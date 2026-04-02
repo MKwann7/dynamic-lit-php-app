@@ -1,10 +1,10 @@
-import { MaxrAccountShell } from './account';
+import { DynLitAccountShell } from './account';
 
-export { MaxrAccountShell };
+export { DynLitAccountShell };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-account-shell')) {
-        customElements.define('maxr-account-shell', MaxrAccountShell);
+    if (!customElements.get('dynlit-account-shell')) {
+        customElements.define('dynlit-account-shell', DynLitAccountShell);
     }
 }
 

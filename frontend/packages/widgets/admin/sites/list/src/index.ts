@@ -1,10 +1,10 @@
-import { MaxrAdminSitesList } from './admin-sites-list';
+import { DynLitAdminSitesList } from './admin-sites-list';
 
-export { MaxrAdminSitesList };
+export { DynLitAdminSitesList };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-admin-sites-list')) {
-        customElements.define('maxr-admin-sites-list', MaxrAdminSitesList);
+    if (!customElements.get('dynlit-admin-sites-list')) {
+        customElements.define('dynlit-admin-sites-list', DynLitAdminSitesList);
     }
 }
 

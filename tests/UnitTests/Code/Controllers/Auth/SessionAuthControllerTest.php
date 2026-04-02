@@ -41,8 +41,8 @@ class SessionAuthControllerTest extends TestCase
         $tokenService = new JwtTokenService(secret: self::JWT_SECRET);
 
         return $tokenService->encode([
-            'iss'        => 'maxr-app',
-            'aud'        => 'maxr-app-clients',
+            'iss'        => 'dynlit-app',
+            'aud'        => 'dynlit-app-clients',
             'iat'        => time(),
             'nbf'        => time(),
             'exp'        => time() + 3600,

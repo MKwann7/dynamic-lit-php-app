@@ -3,8 +3,8 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "paths": {
-      "@maxr/shared": ["../shared/src/index.ts"],
-      "@maxr/shared/*": ["../shared/src/*"]
+      "@dynlit/shared": ["../shared/src/index.ts"],
+      "@dynlit/shared/*": ["../shared/src/*"]
     }
   },
   "include": ["src/**/*.ts"]

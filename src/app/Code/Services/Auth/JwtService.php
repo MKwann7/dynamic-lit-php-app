@@ -17,8 +17,8 @@ final readonly class JwtService
     public function __construct(
         private string $secret,
         private string $algorithm = 'HS256',
-        private string $issuer = 'maxr-app',
-        private string $audience = 'maxr-app-clients',
+        private string $issuer = 'dynlit-app',
+        private string $audience = 'dynlit-app-clients',
         private int    $ttlSeconds = 3600,
     ) {
     }
@@ -250,8 +250,8 @@ final readonly class JwtService
         return new self(
             secret: self::getEnvOrFail('JWT_SECRET'),
             algorithm: self::getEnvOrDefault('JWT_ALGORITHM', 'HS256'),
-            issuer: self::getEnvOrDefault('JWT_ISSUER', 'maxr-app'),
-            audience: self::getEnvOrDefault('JWT_AUDIENCE', 'maxr-app-clients'),
+            issuer: self::getEnvOrDefault('JWT_ISSUER', 'dynlit-app'),
+            audience: self::getEnvOrDefault('JWT_AUDIENCE', 'dynlit-app-clients'),
             ttlSeconds: (int) self::getEnvOrDefault('JWT_TTL_SECONDS', '3600'),
         );
     }

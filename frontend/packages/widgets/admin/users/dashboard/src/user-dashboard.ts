@@ -1,12 +1,12 @@
 import { css, html, PropertyValues, TemplateResult } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
 // Import list classes — the @customElement decorator on each class
 // registers the custom element automatically on import.
-import '@maxr/my-personas-list';
-import '@maxr/my-sites-list';
-import '@maxr/my-groups-list';
+import '@dynlit/my-personas-list';
+import '@dynlit/my-sites-list';
+import '@dynlit/my-groups-list';
 
 /** UUID of the User Profile Manage modal component */
 const PROFILE_MANAGE_ID = '7b3f9c2e-1a4d-4e8b-a5f6-9d2c1b8e3a7f';
@@ -25,8 +25,8 @@ interface UserData {
     status:     string | null;
 }
 
-@customElement('maxr-user-dashboard')
-export class MaxrUserDashboard extends RuntimeWidgetElement {
+@customElement('dynlit-user-dashboard')
+export class DynLitUserDashboard extends RuntimeWidgetElement {
 
     // ── Light DOM so embedded list components inherit Bootstrap styles ─────────
     override createRenderRoot() {
@@ -35,7 +35,7 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
     }
 
     static styles = css`
-        maxr-user-dashboard { display: block; background: #f0f2f5; min-height: 100%; }
+        dynlit-user-dashboard { display: block; background: #f0f2f5; min-height: 100%; }
 
         /* ── Header ──────────────────────────────────────────────────────── */
         .udash-header {
@@ -151,9 +151,9 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
 
         /* ── List-card body ──────────────────────────────────────────────── */
         .udash-list-body { flex: 1; overflow: auto; }
-        .udash-list-body maxr-my-personas-list,
-        .udash-list-body maxr-my-sites-list,
-        .udash-list-body maxr-my-groups-list { display: block; width: 100%; }
+        .udash-list-body dynlit-my-personas-list,
+        .udash-list-body dynlit-my-sites-list,
+        .udash-list-body dynlit-my-groups-list { display: block; width: 100%; }
     `;
 
     // ── State ─────────────────────────────────────────────────────────────────
@@ -191,7 +191,7 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
 
     override connectedCallback() {
         super.connectedCallback();
-        window.addEventListener('maxr:user:updated', this._onUserUpdated);
+        window.addEventListener('dynlit:user:updated', this._onUserUpdated);
         this.userUuid = this.getRouteParam('uuid') ?? this.extractUuidFromUrl();
         if (this.userUuid && this.runtime) {
             this._loadAttempted = true;
@@ -201,9 +201,9 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
 
     override disconnectedCallback(): void {
         super.disconnectedCallback();
-        window.removeEventListener('maxr:user:updated', this._onUserUpdated);
+        window.removeEventListener('dynlit:user:updated', this._onUserUpdated);
         if (this._boundOnAvatarImageSaved) {
-            window.removeEventListener('maxr:image:saved', this._boundOnAvatarImageSaved);
+            window.removeEventListener('dynlit:image:saved', this._boundOnAvatarImageSaved);
         }
     }
 
@@ -286,21 +286,21 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
     private launchAvatarManage(): void {
         if (!this.userUuid) return;
 
-        // Register a one-shot handler — fires when manage-image dispatches maxr:image:saved.
+        // Register a one-shot handler — fires when manage-image dispatches dynlit:image:saved.
         const handler = (e: Event) => {
-            window.removeEventListener('maxr:image:saved', handler);
+            window.removeEventListener('dynlit:image:saved', handler);
             this._boundOnAvatarImageSaved = undefined;
             void this._onAvatarImageSaved((e as CustomEvent<Record<string, unknown>>).detail);
         };
         this._boundOnAvatarImageSaved = handler;
-        window.addEventListener('maxr:image:saved', handler);
+        window.addEventListener('dynlit:image:saved', handler);
 
         void this.runtime?.openModal(MANAGE_IMAGE_ID, {
             maxWidth: '680px',
             onClose: () => {
                 // Clean up if the modal was dismissed without saving.
                 if (this._boundOnAvatarImageSaved) {
-                    window.removeEventListener('maxr:image:saved', this._boundOnAvatarImageSaved);
+                    window.removeEventListener('dynlit:image:saved', this._boundOnAvatarImageSaved);
                     this._boundOnAvatarImageSaved = undefined;
                 }
             },
@@ -334,7 +334,7 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
             );
             if (res.ok && this.user) {
                 this.user = { ...this.user, avatar_url: avatarUrl };
-                window.dispatchEvent(new CustomEvent('maxr:user:updated', {
+                window.dispatchEvent(new CustomEvent('dynlit:user:updated', {
                     detail: { uuid: this.userUuid, avatar_url: avatarUrl },
                 }));
             }
@@ -447,10 +447,10 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
                     <span class="udash-card-title">Personas</span>
                 </div>
                 <div class="udash-list-body">
-                    <maxr-my-personas-list
+                    <dynlit-my-personas-list
                         .runtime=${this.runtime}
                         .userUuid=${this.userUuid}
-                    ></maxr-my-personas-list>
+                    ></dynlit-my-personas-list>
                 </div>
             </div>`;
     }
@@ -468,10 +468,10 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
                     <span class="udash-card-title">Sites</span>
                 </div>
                 <div class="udash-list-body">
-                    <maxr-my-sites-list
+                    <dynlit-my-sites-list
                         .runtime=${this.runtime}
                         .userUuid=${this.userUuid}
-                    ></maxr-my-sites-list>
+                    ></dynlit-my-sites-list>
                 </div>
             </div>`;
     }
@@ -489,10 +489,10 @@ export class MaxrUserDashboard extends RuntimeWidgetElement {
                     <span class="udash-card-title">Groups</span>
                 </div>
                 <div class="udash-list-body">
-                    <maxr-my-groups-list
+                    <dynlit-my-groups-list
                         .runtime=${this.runtime}
                         .userUuid=${this.userUuid}
-                    ></maxr-my-groups-list>
+                    ></dynlit-my-groups-list>
                 </div>
             </div>`;
     }

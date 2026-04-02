@@ -4,7 +4,7 @@ clear
 reset
 
 BUILD=local
-APP_NAME=maxr
+APP_NAME=dynlit
 
 project_path="$( cd "$( dirname "${BASH_SOURCE[0]//scripts\/}" )" &> /dev/null && pwd )"
 echo "project_path = ${project_path}"

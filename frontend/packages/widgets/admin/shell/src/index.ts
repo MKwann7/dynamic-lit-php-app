@@ -1,7 +1,7 @@
-import {MaxrAdminShell} from './admin';
+import {DynLitAdminShell} from './admin';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-admin-shell')) {
-        customElements.define('maxr-admin-shell', MaxrAdminShell);
+    if (!customElements.get('dynlit-admin-shell')) {
+        customElements.define('dynlit-admin-shell', DynLitAdminShell);
     }
 }

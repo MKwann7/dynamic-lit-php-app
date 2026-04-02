@@ -1,9 +1,9 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-create-account')
-export class MaxrCreateAccount extends RuntimeWidgetElement {
+@customElement('dynlit-create-account')
+export class DynLitCreateAccount extends RuntimeWidgetElement {
     @property({ type: String })
     title = 'Create Account';
 

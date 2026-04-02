@@ -15,8 +15,8 @@ export default defineConfig({
         rollupOptions: {
             external: [
                 'lit',
-                '@maxr/shared/runtime-widget',
-                '@maxr/shared/types',
+                '@dynlit/shared/runtime-widget',
+                '@dynlit/shared/types',
             ],
             output: {
                 entryFileNames: 'dyn-component-manager.js'

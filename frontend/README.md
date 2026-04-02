@@ -7,7 +7,7 @@ npm install mysql2
 
 make ui-component location="account/sites/list" name="My Sites" tag="my-sites-list" uri="my-sites"
 
-build:component @maxr/my-sites-list
+build:component @dynlit/my-sites-list
 
 
 make ui-component location="managers/media/images" name="Manage Image" tag="manage-image" uri="manage-image"

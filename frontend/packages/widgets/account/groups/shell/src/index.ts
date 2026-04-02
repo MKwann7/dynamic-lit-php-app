@@ -1,9 +1,9 @@
-import { MaxrGroupShell } from './my-group-shell';
+import { DynLitGroupShell } from './my-group-shell';
 
-export { MaxrGroupShell };
+export { DynLitGroupShell };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-my-group-shell')) {
-        customElements.define('maxr-my-group-shell', MaxrGroupShell);
+    if (!customElements.get('dynlit-my-group-shell')) {
+        customElements.define('dynlit-my-group-shell', DynLitGroupShell);
     }
 }

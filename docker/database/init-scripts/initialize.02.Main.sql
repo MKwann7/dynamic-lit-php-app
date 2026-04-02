@@ -7,9 +7,9 @@
 
 SET GLOBAL log_bin_trust_function_creators = 1;
 
--- Dumping database structure for maxr_users
-CREATE DATABASE IF NOT EXISTS `maxr_main` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `maxr_main`;
+-- Dumping database structure for dynlit_users
+CREATE DATABASE IF NOT EXISTS `dynlit_main` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+USE `dynlit_main`;
 
 
 CREATE TABLE IF NOT EXISTS `site` (

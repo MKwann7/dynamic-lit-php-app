@@ -1,10 +1,10 @@
-import { MaxrUserProfileManage } from './user-profile-manage';
+import { DynLitUserProfileManage } from './user-profile-manage';
 
-export { MaxrUserProfileManage };
+export { DynLitUserProfileManage };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-user-profile-manage')) {
-        customElements.define('maxr-user-profile-manage', MaxrUserProfileManage);
+    if (!customElements.get('dynlit-user-profile-manage')) {
+        customElements.define('dynlit-user-profile-manage', DynLitUserProfileManage);
     }
 }
 

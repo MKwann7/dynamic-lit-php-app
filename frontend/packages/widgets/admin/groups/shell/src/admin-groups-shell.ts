@@ -1,8 +1,8 @@
 import { customElement } from 'lit/decorators.js';
-import { MaxrGroupShell } from '@maxr/my-group-shell';
+import { DynLitGroupShell } from '@dynlit/my-group-shell';
 
-@customElement('maxr-admin-groups-shell')
-export class MaxrAdminGroupsShell extends MaxrGroupShell {
+@customElement('dynlit-admin-groups-shell')
+export class DynLitAdminGroupsShell extends DynLitGroupShell {
     // Inherits the account group-shell chrome.
     // component.json dependencies point this shell at the admin list and
     // admin dashboard components instead of the account equivalents.

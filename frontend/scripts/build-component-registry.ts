@@ -343,7 +343,7 @@ function sqlString(value: string | null): string {
 }
 
 function generateElName(value: string | null): string {
-    return `maxr-${value}`;
+    return `dynlit-${value}`;
 }
 
 
@@ -354,7 +354,7 @@ function buildComponentsSql(registry: ComponentRegistry): string {
     lines.push(`-- Generated at: ${registry.generatedAt}`);
     lines.push('SET FOREIGN_KEY_CHECKS=0;');
     lines.push('');
-    lines.push('USE `maxr_components`;');
+    lines.push('USE `dynlit_components`;');
     lines.push('');
 
     for (const component of registry.components) {

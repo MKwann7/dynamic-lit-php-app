@@ -1,11 +1,11 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-my-group-shell')
-export class MaxrGroupShell extends RuntimeWidgetElement {
+@customElement('dynlit-my-group-shell')
+export class DynLitGroupShell extends RuntimeWidgetElement {
     @property({ type: String })
-    title = 'Maxr Group Shell';
+    title = 'DynLit Group Shell';
     
     connectedCallback() {
         super.connectedCallback();
@@ -14,8 +14,8 @@ export class MaxrGroupShell extends RuntimeWidgetElement {
     render() {
         return html`
     <section>
-        <h2>Maxr Group Shell</h2>
-        <p>Maxr Group Shell widget loaded.</p>
+        <h2>DynLit Group Shell</h2>
+        <p>DynLit Group Shell widget loaded.</p>
       </section>`;
     }
 }

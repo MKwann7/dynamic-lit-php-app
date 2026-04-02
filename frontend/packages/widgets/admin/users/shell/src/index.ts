@@ -1,7 +1,7 @@
-import { MaxrUsersShell } from './users-shell';
+import { DynLitUsersShell } from './users-shell';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-users-shell')) {
-        customElements.define('maxr-users-shell', MaxrUsersShell);
+    if (!customElements.get('dynlit-users-shell')) {
+        customElements.define('dynlit-users-shell', DynLitUsersShell);
     }
 }

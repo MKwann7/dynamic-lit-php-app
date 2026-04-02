@@ -1,4 +1,4 @@
-import type { LoadComponentOptions, MountRoutingContext } from '@maxr/shared/types';
+import type { LoadComponentOptions, MountRoutingContext } from '@dynlit/shared/types';
 
 const FLOAT_MOUNT_ID = 'dyn-float-mount';
 

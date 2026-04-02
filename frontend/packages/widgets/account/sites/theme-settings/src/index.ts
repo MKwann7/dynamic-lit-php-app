@@ -1,7 +1,7 @@
-import { MaxrSiteThemeSettings } from './site-theme-settings';
+import { DynLitSiteThemeSettings } from './site-theme-settings';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-site-theme-settings')) {
-        customElements.define('maxr-site-theme-settings', MaxrSiteThemeSettings);
+    if (!customElements.get('dynlit-site-theme-settings')) {
+        customElements.define('dynlit-site-theme-settings', DynLitSiteThemeSettings);
     }
 }

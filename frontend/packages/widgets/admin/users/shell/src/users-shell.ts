@@ -1,11 +1,11 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-users-shell')
-export class MaxrUsersShell extends RuntimeWidgetElement {
+@customElement('dynlit-users-shell')
+export class DynLitUsersShell extends RuntimeWidgetElement {
     @property({ type: String })
-    title = 'Maxr Users Shell';
+    title = 'DynLit Users Shell';
     
     connectedCallback() {
         super.connectedCallback();
@@ -14,8 +14,8 @@ export class MaxrUsersShell extends RuntimeWidgetElement {
     render() {
         return html`
     <section>
-        <h2>Maxr Users Shell</h2>
-        <p>Maxr Users Shell widget loaded.</p>
+        <h2>DynLit Users Shell</h2>
+        <p>DynLit Users Shell widget loaded.</p>
       </section>`;
     }
 }

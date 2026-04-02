@@ -9,11 +9,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE IF NOT EXISTS `maxr_media`
+CREATE DATABASE IF NOT EXISTS `dynlit_media`
   DEFAULT CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-USE `maxr_media`;
+USE `dynlit_media`;
 
 DROP TABLE IF EXISTS `image`;
 CREATE TABLE `image` (
@@ -49,7 +49,7 @@ CREATE TABLE `image` (
 ) ENGINE=InnoDB
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_unicode_ci
-  COMMENT='ImageTable for Maxr 1.0';
+  COMMENT='ImageTable for DynLit 1.0';
 
 DROP TRIGGER IF EXISTS `tgr_image_sysrowid`;
 

@@ -1,11 +1,11 @@
 import { css, html, TemplateResult } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
 type FieldStatus = 'idle' | 'checking' | 'ok' | 'taken';
 
-@customElement('maxr-site-profile-manage')
-export class MaxrSiteProfileManage extends RuntimeWidgetElement {
+@customElement('dynlit-site-profile-manage')
+export class DynLitSiteProfileManage extends RuntimeWidgetElement {
 
     static styles = css`
         :host { display: block; width: 100%; background: #fff; }
@@ -381,7 +381,7 @@ export class MaxrSiteProfileManage extends RuntimeWidgetElement {
                 updatedPayload = { ...updatedPayload, ...data, uuid: this.siteUuid };
             } catch { /* use form values as-is */ }
 
-            window.dispatchEvent(new CustomEvent('maxr:site:updated', {
+            window.dispatchEvent(new CustomEvent('dynlit:site:updated', {
                 detail: updatedPayload,
             }));
 

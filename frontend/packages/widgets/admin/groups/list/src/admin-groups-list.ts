@@ -1,11 +1,11 @@
 import { customElement } from 'lit/decorators.js';
-import { MaxrMyGroupsList } from '@maxr/my-groups-list';
+import { DynLitMyGroupsList } from '@dynlit/my-groups-list';
 
 /** UUID of the Admin Group Dashboard component */
 const ADMIN_DASHBOARD_COMPONENT_ID = 'e0908bdf-231d-413b-bd89-60f81184c9e1';
 
-@customElement('maxr-admin-groups-list')
-export class MaxrAdminGroupsList extends MaxrMyGroupsList {
+@customElement('dynlit-admin-groups-list')
+export class DynLitAdminGroupsList extends DynLitMyGroupsList {
 
     /** Point navigation at the admin group dashboard */
     override dashboardComponentId: string = ADMIN_DASHBOARD_COMPONENT_ID;

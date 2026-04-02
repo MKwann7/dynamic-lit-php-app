@@ -1,9 +1,9 @@
-import { MaxrSiteShell } from './my-site-shell';
+import { DynLitSiteShell } from './my-site-shell';
 
-export { MaxrSiteShell };
+export { DynLitSiteShell };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-my-site-shell')) {
-        customElements.define('maxr-my-site-shell', MaxrSiteShell);
+    if (!customElements.get('dynlit-my-site-shell')) {
+        customElements.define('dynlit-my-site-shell', DynLitSiteShell);
     }
 }

@@ -52,11 +52,11 @@ function uriPathFromUri(tag: string): string {
 }
 
 function packageNameFromTag(tag: string): string {
-    return `@maxr/${tag}`;
+    return `@dynlit/${tag}`;
 }
 
 function fullTagFromTag(tag: string): string {
-    return `maxr-${tag}`;
+    return `dynlit-${tag}`;
 }
 
 function componentJson(args: Args, fullName: string, uriPath: string, tagName: string, location: string): string {
@@ -150,7 +150,7 @@ export default defineConfig({
             external: [
                 'lit',
                 'lit/decorators.js',
-                '@maxr/shared/runtime-export',
+                '@dynlit/shared/runtime-export',
             ],
         },
     },
@@ -163,7 +163,7 @@ function componentTs(name: string, tagFullName: string): string {
 
     return `import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
 @customElement('${tagFullName}')
 export class ${className} extends RuntimeWidgetElement {
@@ -217,7 +217,7 @@ async function writeFileSafe(filePath: string, content: string): Promise<void> {
 
 async function main(): Promise<void> {
     const args = parseArgs(process.argv.slice(2));
-    const fullName = "Maxr " + args.name;
+    const fullName = "DynLit " + args.name;
     const tagName = args.tag;
     const tagFullName = fullTagFromTag(tagName);
     const packageFullName = packageNameFromTag(tagName);

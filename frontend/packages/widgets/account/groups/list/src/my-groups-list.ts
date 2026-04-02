@@ -1,7 +1,7 @@
 import { css, html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { BaseEntityList } from '@maxr/shared';
-import type { FieldDef, FilterDef } from '@maxr/shared';
+import { BaseEntityList } from '@dynlit/shared';
+import type { FieldDef, FilterDef } from '@dynlit/shared';
 
 /** UUID of the Site Dashboard component */
 const DASHBOARD_COMPONENT_ID = '9bf9e360-1a53-402d-a7ea-612b947ca293';
@@ -20,8 +20,8 @@ interface SiteItem extends Record<string, unknown> {
     updated_at:  string | null;
 }
 
-@customElement('maxr-my-groups-list')
-export class MaxrMyGroupsList extends BaseEntityList<SiteItem> {
+@customElement('dynlit-my-groups-list')
+export class DynLitMyGroupsList extends BaseEntityList<SiteItem> {
 
     // ── Config ────────────────────────────────────────────────────────────────
 
@@ -97,7 +97,7 @@ export class MaxrMyGroupsList extends BaseEntityList<SiteItem> {
 
     protected override get createLabel() { return 'Purchase New Card'; }
 
-    protected override get itemUpdatedEvent() { return 'maxr:group:updated'; }
+    protected override get itemUpdatedEvent() { return 'dynlit:group:updated'; }
 
     // ── Styles (extends base) ─────────────────────────────────────────────────
 

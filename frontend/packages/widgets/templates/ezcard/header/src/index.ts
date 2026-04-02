@@ -1,7 +1,7 @@
 import {EzcardHeader} from './ezcard-header';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-ezcard-header')) {
-        customElements.define('maxr-ezcard-header', EzcardHeader);
+    if (!customElements.get('dynlit-ezcard-header')) {
+        customElements.define('dynlit-ezcard-header', EzcardHeader);
     }
 }

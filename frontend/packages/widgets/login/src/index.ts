@@ -1,7 +1,7 @@
-import { MaxrLoginAuth } from './login';
+import { DynLitLoginAuth } from './login';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-login')) {
-        customElements.define('maxr-login', MaxrLoginAuth);
+    if (!customElements.get('dynlit-login')) {
+        customElements.define('dynlit-login', DynLitLoginAuth);
     }
 }

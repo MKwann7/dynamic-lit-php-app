@@ -1,9 +1,9 @@
 import { css, html, TemplateResult } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-user-profile-manage')
-export class MaxrUserProfileManage extends RuntimeWidgetElement {
+@customElement('dynlit-user-profile-manage')
+export class DynLitUserProfileManage extends RuntimeWidgetElement {
 
     static styles = css`
         :host { display: block; width: 100%; background: #fff; }
@@ -245,7 +245,7 @@ export class MaxrUserProfileManage extends RuntimeWidgetElement {
                 updated = { ...updated, ...data, uuid: this.userUuid };
             } catch { /* use form values */ }
 
-            window.dispatchEvent(new CustomEvent('maxr:user:updated', { detail: updated }));
+            window.dispatchEvent(new CustomEvent('dynlit:user:updated', { detail: updated }));
             setTimeout(() => this.runtime?.closeModal(), 1200);
         } catch (e: unknown) {
             this.errorMsg = e instanceof Error ? e.message : 'An unexpected error occurred.';

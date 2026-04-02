@@ -1,9 +1,9 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { MaxrAccountShell } from '@maxr/account-shell';
+import { DynLitAccountShell } from '@dynlit/account-shell';
 
-@customElement('maxr-admin-shell')
-export class MaxrAdminShell extends MaxrAccountShell {
+@customElement('dynlit-admin-shell')
+export class DynLitAdminShell extends DynLitAccountShell {
     @property({ type: String })
     title = 'Admin';
 }

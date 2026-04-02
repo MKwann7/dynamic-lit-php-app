@@ -1,7 +1,7 @@
-import { MaxrSiteUserManage } from './site-user-manage';
+import { DynLitSiteUserManage } from './site-user-manage';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-site-user-manage')) {
-        customElements.define('maxr-site-user-manage', MaxrSiteUserManage);
+    if (!customElements.get('dynlit-site-user-manage')) {
+        customElements.define('dynlit-site-user-manage', DynLitSiteUserManage);
     }
 }

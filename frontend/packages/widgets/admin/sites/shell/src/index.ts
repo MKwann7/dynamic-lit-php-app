@@ -1,10 +1,10 @@
-import { MaxrAdminSitesShell } from './admin-sites-shell';
+import { DynLitAdminSitesShell } from './admin-sites-shell';
 
-export { MaxrAdminSitesShell };
+export { DynLitAdminSitesShell };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-admin-sites-shell')) {
-        customElements.define('maxr-admin-sites-shell', MaxrAdminSitesShell);
+    if (!customElements.get('dynlit-admin-sites-shell')) {
+        customElements.define('dynlit-admin-sites-shell', DynLitAdminSitesShell);
     }
 }
 

@@ -1,6 +1,6 @@
 import { css, html, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -35,15 +35,15 @@ interface ImageItem {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-@customElement('maxr-list-images')
-export class MaxrListImages extends RuntimeWidgetElement {
+@customElement('dynlit-list-images')
+export class DynLitListImages extends RuntimeWidgetElement {
 
     // ── Props ─────────────────────────────────────────────────────────────────
 
     @property({ type: String, attribute: 'user-uuid' })
     userUuid = '';
 
-    /** Override the media server base URL. Falls back to window.__MAXR_BOOTSTRAP__.media.serverUrl. */
+    /** Override the media server base URL. Falls back to window.__dynlit_BOOTSTRAP__.media.serverUrl. */
     @property({ type: String, attribute: 'media-server-url' })
     mediaServerUrl = '';
 
@@ -61,7 +61,7 @@ export class MaxrListImages extends RuntimeWidgetElement {
 
     private get _resolvedMediaUrl(): string {
         if (this.mediaServerUrl) return this.mediaServerUrl.replace(/\/$/, '');
-        const boot = (window as unknown as { __MAXR_BOOTSTRAP__?: Record<string, unknown> }).__MAXR_BOOTSTRAP__ ?? {};
+        const boot = (window as unknown as { __dynlit_BOOTSTRAP__?: Record<string, unknown> }).__dynlit_BOOTSTRAP__ ?? {};
         const media = boot['media'] as { serverUrl?: string } | undefined;
         return (media?.serverUrl ?? 'http://localhost:3002').replace(/\/$/, '');
     }
@@ -223,10 +223,10 @@ export class MaxrListImages extends RuntimeWidgetElement {
     // ── Selection ─────────────────────────────────────────────────────────────
 
     private _select(item: ImageItem | CropItem): void {
-        this.dispatchEvent(new CustomEvent('maxr:image:selected', {
+        this.dispatchEvent(new CustomEvent('dynlit:image:selected', {
             detail: item, bubbles: true, composed: true,
         }));
-        window.dispatchEvent(new CustomEvent('maxr:image:selected', { detail: item }));
+        window.dispatchEvent(new CustomEvent('dynlit:image:selected', { detail: item }));
     }
 
     // ── Render ────────────────────────────────────────────────────────────────

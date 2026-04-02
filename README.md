@@ -10,10 +10,10 @@ The stack consists of four Docker services that work together:
 
 | Service | Container | Port(s) | Description |
 |---|---|---|---|
-| PHP App | `maxr-app` | `3000` (HTTP), `4000` (HTTPS) | Core PHP application server |
-| MySQL | `maxr-db` | `3318` (external) | MySQL 8.4 database |
-| Assets | `maxr-assets` | `3001` | Nginx serving compiled frontend JS/CSS |
-| Media | `maxr-media` | `3002` | Go microservice for image upload/delete |
+| PHP App | `dynlit-app` | `3000` (HTTP), `4000` (HTTPS) | Core PHP application server |
+| MySQL | `dynlit-db` | `3318` (external) | MySQL 8.4 database |
+| Assets | `dynlit-assets` | `3001` | Nginx serving compiled frontend JS/CSS |
+| Media | `dynlit-media` | `3002` | Go microservice for image upload/delete |
 
 The PHP application uses **Symfony Routing** and **HttpFoundation** for HTTP primitives, with a hand-rolled service container and middleware pipeline on top.
 
@@ -46,7 +46,7 @@ The environment is configured via `docker/env/app-local.env`. Key variables:
 | `DB_USER_DATABASE` | MySQL database for user records |
 | `DB_MAIN_DATABASE` | MySQL main application database |
 | `DB_COMPONENTS_DATABASE` | MySQL database for component registry |
-| `DB_WHITELABEL_DATABASE` | MySQL database for whitelabel configs |
+| `DB_IDENTITY_DATABASE` | MySQL database for whitelabel configs |
 | `DB_MEDIA_DATABASE` | MySQL database for media metadata |
 | `JWT_SECRET` | HS256 secret used to sign/verify all JWTs |
 | `JWT_ISSUER` / `JWT_AUDIENCE` | JWT `iss` and `aud` claims |
@@ -184,8 +184,8 @@ The frontend lives in `frontend/` and is a Node.js workspace with three packages
 
 | Package | Description |
 |---|---|
-| `@maxr/runtime` | The dynamic component manager — loads Lit web components on demand |
-| `@maxr/shared` | Shared TypeScript types and base widget class used by all components |
+| `@dynlit/runtime` | The dynamic component manager — loads Lit web components on demand |
+| `@dynlit/shared` | Shared TypeScript types and base widget class used by all components |
 | `packages/widgets/**` | Individual Lit web components, each in their own package |
 
 Built with **Vite** + **TypeScript**.

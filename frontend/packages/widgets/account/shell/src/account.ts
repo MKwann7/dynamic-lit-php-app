@@ -1,9 +1,9 @@
 import {css, html} from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-account-shell')
-export class MaxrAccountShell extends RuntimeWidgetElement {
+@customElement('dynlit-account-shell')
+export class DynLitAccountShell extends RuntimeWidgetElement {
     @property({ type: String })
     title = 'Account';
 
@@ -13,7 +13,7 @@ export class MaxrAccountShell extends RuntimeWidgetElement {
 
     static styles = css`
         #app-root > div,
-        #app-root > div > maxr-account {
+        #app-root > div > dynlit-account {
             display: block;
             height: 100vh;
         }
@@ -84,11 +84,11 @@ export class MaxrAccountShell extends RuntimeWidgetElement {
     render() {
         return html`
         <header class="portal-header">
-            <dyn-slot name="maxr-ezcard-header"></dyn-slot>
+            <dyn-slot name="dynlit-ezcard-header"></dyn-slot>
         </header>
     
         <nav class="portal-nav">
-            <dyn-slot name="maxr-ezcard-nav"></dyn-slot>
+            <dyn-slot name="dynlit-ezcard-nav"></dyn-slot>
         </nav>
     
         <section class="portal-body">
@@ -96,7 +96,7 @@ export class MaxrAccountShell extends RuntimeWidgetElement {
         </section>
     
         <footer class="portal-footer">
-            <dyn-slot name="maxr-ezcard-footer"></dyn-slot>
+            <dyn-slot name="dynlit-ezcard-footer"></dyn-slot>
         </footer>
     `;
     }

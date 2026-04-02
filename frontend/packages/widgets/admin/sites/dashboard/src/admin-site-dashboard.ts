@@ -1,8 +1,8 @@
 import { customElement } from 'lit/decorators.js';
-import { MaxrSiteDashboard } from '@maxr/my-site-dashboard';
+import { DynLitSiteDashboard } from '@dynlit/my-site-dashboard';
 
-@customElement('maxr-admin-site-dashboard')
-export class MaxrAdminSiteDashboard extends MaxrSiteDashboard {
+@customElement('dynlit-admin-site-dashboard')
+export class DynLitAdminSiteDashboard extends DynLitSiteDashboard {
     // Inherits the full site dashboard UI.
     // The admin version is loaded from the admin sites shell, which passes
     // route params the same way as the account shell — no further overrides

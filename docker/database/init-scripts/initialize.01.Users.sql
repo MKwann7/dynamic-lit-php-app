@@ -7,9 +7,9 @@
 
 SET GLOBAL log_bin_trust_function_creators = 1;
 
--- Dumping database structure for maxr_users
-CREATE DATABASE IF NOT EXISTS `maxr_users` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `maxr_users`;
+-- Dumping database structure for dynlit_users
+CREATE DATABASE IF NOT EXISTS `dynlit_users` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+USE `dynlit_users`;
 
 CREATE TABLE IF NOT EXISTS `user` (
     `user_id` INT NOT NULL AUTO_INCREMENT COMMENT 'UserId',
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `user` (
     KEY `ix_user_username` (`username`),
     KEY `ix_user_password_reset_token` (`password_reset_token`),
     KEY `ix_user_last_login` (`last_login`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='User Table for Maxr 1.0';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='User Table for DynLit 1.0';
 
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
 DELIMITER //
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `user_login` (
     KEY `ix_user_login_user_id` (`user_id`),
     KEY `ix_user_login_login_on` (`login_on`),
     KEY `ix_user_login_success` (`success`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='User login audit table for Maxr 1.0';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='User login audit table for DynLit 1.0';
 
 -- ---------------------------------------------------------------------------
 -- Fine-grained admin permission grants (1 user → N permissions)

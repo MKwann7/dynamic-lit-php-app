@@ -1,7 +1,7 @@
-import { MaxrGroup } from './group';
+import { DynLitGroup } from './group';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-group')) {
-        customElements.define('maxr-group', MaxrGroup);
+    if (!customElements.get('dynlit-group')) {
+        customElements.define('dynlit-group', DynLitGroup);
     }
 }

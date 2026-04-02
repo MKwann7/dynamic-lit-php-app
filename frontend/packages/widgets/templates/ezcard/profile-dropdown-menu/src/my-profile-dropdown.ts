@@ -1,6 +1,6 @@
 import { css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
 interface UserProfile {
     name: string;
@@ -9,8 +9,8 @@ interface UserProfile {
     avatarUrl: string;
 }
 
-@customElement('maxr-my-profile-dropdown')
-export class MaxrMyProfileDropdown extends RuntimeWidgetElement {
+@customElement('dynlit-my-profile-dropdown')
+export class DynLitMyProfileDropdown extends RuntimeWidgetElement {
 
     static styles = css`
         :host {

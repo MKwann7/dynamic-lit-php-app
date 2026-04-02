@@ -1,11 +1,11 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-my-persona-shell')
-export class MaxrPersonaShell extends RuntimeWidgetElement {
+@customElement('dynlit-my-persona-shell')
+export class DynLitPersonaShell extends RuntimeWidgetElement {
     @property({ type: String })
-    title = 'Maxr Persona Shell';
+    title = 'DynLit Persona Shell';
     
     connectedCallback() {
         super.connectedCallback();
@@ -14,8 +14,8 @@ export class MaxrPersonaShell extends RuntimeWidgetElement {
     render() {
         return html`
     <section>
-        <h2>Maxr Persona Shell</h2>
-        <p>Maxr Persona Shell widget loaded.</p>
+        <h2>DynLit Persona Shell</h2>
+        <p>DynLit Persona Shell widget loaded.</p>
       </section>`;
     }
 }

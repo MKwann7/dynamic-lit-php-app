@@ -1,6 +1,6 @@
 import { css, html, nothing } from 'lit';
 import { state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
 interface LoginSuccessResponse {
     success: boolean;
@@ -17,7 +17,7 @@ interface LoginSuccessResponse {
     message?: string;
 }
 
-export class MaxrLoginAuth extends RuntimeWidgetElement {
+export class DynLitLoginAuth extends RuntimeWidgetElement {
     @state() private username = '';
     @state() private password = '';
     @state() private isSubmitting = false;
@@ -308,12 +308,12 @@ export class MaxrLoginAuth extends RuntimeWidgetElement {
                     await navigator.credentials.store(cred);
                 } catch (e) {
                     // non-fatal — credential storage is best-effort
-                    console.warn('[maxr-login] credential storage skipped:', e);
+                    console.warn('[dynlit-login] credential storage skipped:', e);
                 }
             }
 
             this.dispatchEvent(
-                new CustomEvent('maxr:auth:login-success', {
+                new CustomEvent('dynlit:auth:login-success', {
                     detail: payload.data,
                     bubbles: true,
                     composed: true,
@@ -324,7 +324,7 @@ export class MaxrLoginAuth extends RuntimeWidgetElement {
                 payload.data.token_type === 'admin' ? '/administrator' : '/account'
             );
         } catch (error) {
-            console.error('[maxr-login-auth] login error', error);
+            console.error('[dynlit-login-auth] login error', error);
             this.errorMessage = 'Unable to log in right now.';
         } finally {
             this.isSubmitting = false;
@@ -339,7 +339,7 @@ export class MaxrLoginAuth extends RuntimeWidgetElement {
             <div class="login-screen">
                 <div class="login-shell container-fluid">
                     <div class="login-card">
-                        <div class="brand-kicker">MaxR Platform</div>
+                        <div class="brand-kicker">dynlit Platform</div>
                         <h1 class="title">Welcome back</h1>
                         <div class="subtitle">
                             Sign in to continue into your account workspace.

@@ -1,5 +1,5 @@
 {
-  "name": "maxr-frontend-cdn",
+  "name": "dynlit-frontend-cdn",
   "private": true,
   "workspaces": [
     "packages/runtime",

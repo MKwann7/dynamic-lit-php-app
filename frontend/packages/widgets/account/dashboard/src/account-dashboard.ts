@@ -1,11 +1,11 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-account-dashboard')
-export class MaxrAcountDashboard extends RuntimeWidgetElement {
+@customElement('dynlit-account-dashboard')
+export class DynLitAcountDashboard extends RuntimeWidgetElement {
     @property({ type: String })
-    title = 'Maxr Acount Dashboard';
+    title = 'DynLit Acount Dashboard';
     
     connectedCallback() {
         super.connectedCallback();
@@ -14,8 +14,8 @@ export class MaxrAcountDashboard extends RuntimeWidgetElement {
     render() {
         return html`
     <section>
-        <h2>Maxr Acount Dashboard</h2>
-        <p>Maxr Acount Dashboard widget loaded.</p>
+        <h2>DynLit Acount Dashboard</h2>
+        <p>DynLit Acount Dashboard widget loaded.</p>
       </section>`;
     }
 }

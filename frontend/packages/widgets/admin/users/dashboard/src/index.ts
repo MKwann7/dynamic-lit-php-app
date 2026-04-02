@@ -1,7 +1,7 @@
-import { MaxrUserDashboard } from './user-dashboard';
+import { DynLitUserDashboard } from './user-dashboard';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-user-dashboard')) {
-        customElements.define('maxr-user-dashboard', MaxrUserDashboard);
+    if (!customElements.get('dynlit-user-dashboard')) {
+        customElements.define('dynlit-user-dashboard', DynLitUserDashboard);
     }
 }

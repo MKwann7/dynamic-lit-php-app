@@ -1,9 +1,9 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-site')
-export class MaxrSite extends RuntimeWidgetElement {
+@customElement('dynlit-site')
+export class DynLitSite extends RuntimeWidgetElement {
     @property({ type: String })
     title = 'Site';
 

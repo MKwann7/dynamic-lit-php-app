@@ -132,12 +132,12 @@ abstract class BaseController
         $html = $this->services()
             ->htmlPageRenderer()
             ->render('Shared/Views/core-shell', [
-                'pageTitle' => 'Maxr',
+                'pageTitle' => 'DynLit',
                 'appJsUrl' => '/assets/runtime/dyn-component-manager.js',
                 'bootstrapCssUrl' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
                 'bootstrap' => [
                     'app' => [
-                        'name' => 'Maxr',
+                        'name' => 'DynLit',
                         'environment' => getenv('APP_ENV') ?: 'local',
                         'baseUrl' => rtrim((string)(getenv('APP_URL') ?: ''), '/'),
                     ],

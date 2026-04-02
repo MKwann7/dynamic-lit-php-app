@@ -1,7 +1,7 @@
 services:
   app:
-    hostname: maxr-app.docker
-    container_name: maxr-app
+    hostname: dynlit-app.docker
+    container_name: dynlit-app
     build:
       context: ./../
       dockerfile: ./docker/Dockerfile

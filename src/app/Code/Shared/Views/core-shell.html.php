@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @var string|null $faviconUrl
  */
 
-$pageTitle = $pageTitle ?? 'Maxr';
+$pageTitle = $pageTitle ?? 'DynLit';
 $bootstrap = $bootstrap ?? [];
 $bootstrapCssUrl = $bootstrapCssUrl ?? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
 $appJsUrl = $appJsUrl ?? '/assets/runtime/dyn-component-manager.js';
@@ -59,7 +59,7 @@ $faviconUrl = $faviconUrl ?? null;
     </style>
 
     <script>
-        window.__MAXR_BOOTSTRAP__ = <?= json_encode(
+        window.__dynlit_BOOTSTRAP__ = <?= json_encode(
             $bootstrap,
             JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
         ) ?>;
@@ -75,9 +75,9 @@ $faviconUrl = $faviconUrl ?? null;
       "imports": {
         "lit": "/assets/runtime/vendor/lit.js",
         "lit/decorators.js": "/assets/runtime/vendor/lit.js",
-        "@maxr/shared": "/assets/runtime/index.js",
-        "@maxr/shared/runtime-widget": "/assets/runtime/runtime-widget.js",
-        "@maxr/shared/types": "/assets/runtime/types.js"
+        "@dynlit/shared": "/assets/runtime/index.js",
+        "@dynlit/shared/runtime-widget": "/assets/runtime/runtime-widget.js",
+        "@dynlit/shared/types": "/assets/runtime/types.js"
       }
     }
 </script>
@@ -86,7 +86,7 @@ $faviconUrl = $faviconUrl ?? null;
 
     document.addEventListener("DOMContentLoaded", async () => {
         const root = document.getElementById("app-root");
-        const boot = window.__MAXR_BOOTSTRAP__ || {};
+        const boot = window.__dynlit_BOOTSTRAP__ || {};
 
         if (!root) {
             console.error("Dyn bootstrap failed: #app-root not found.");

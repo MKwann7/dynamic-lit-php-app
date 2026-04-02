@@ -1,11 +1,11 @@
 import { html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-my-group-dashboard')
-export class MaxrGroupDashboard extends RuntimeWidgetElement {
+@customElement('dynlit-my-group-dashboard')
+export class DynLitGroupDashboard extends RuntimeWidgetElement {
     @property({ type: String })
-    title = 'Maxr Site Dashboard';
+    title = 'DynLit Site Dashboard';
 
     @state()
     private siteUuid: string | null = null;
@@ -20,7 +20,7 @@ export class MaxrGroupDashboard extends RuntimeWidgetElement {
     render() {
         return html`
         <section>
-            <h2>Maxr Site Dashboard</h2>
+            <h2>DynLit Site Dashboard</h2>
             ${this.siteUuid
                 ? html`<p>Site UUID: <code>${this.siteUuid}</code></p>`
                 : html`<p>No site selected.</p>`

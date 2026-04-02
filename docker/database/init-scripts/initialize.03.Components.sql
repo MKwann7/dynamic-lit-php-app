@@ -7,9 +7,9 @@
 
 SET GLOBAL log_bin_trust_function_creators = 1;
 
-CREATE DATABASE IF NOT EXISTS `maxr_components`
+CREATE DATABASE IF NOT EXISTS `dynlit_components`
     /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `maxr_components`;
+USE `dynlit_components`;
 
 CREATE TABLE component (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

@@ -32,7 +32,7 @@ export abstract class BaseEntityList<
      * DOM event name that signals an item was updated externally.
      * The base class subscribes in connectedCallback and merges the payload.
      */
-    protected get itemUpdatedEvent(): string { return 'maxr:entity:updated'; }
+    protected get itemUpdatedEvent(): string { return 'dynlit:entity:updated'; }
 
     /** Override to return a banner/thumbnail URL from an item */
     protected getBannerUrl(_item: T): string | null { return null; }

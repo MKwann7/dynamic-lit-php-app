@@ -12,7 +12,7 @@ import type {
     TransitionType,
     MountRoutingContext,
     BreadcrumbItem,
-} from '@maxr/shared/types';
+} from '@dynlit/shared/types';
 import { defineDynSlotElement, defineDynMountElement } from './dyn-slot';
 
 type TokenType = string | null;
@@ -128,10 +128,10 @@ interface MountedWidgetElement extends HTMLElement {
     __dyn_slot_name__?: string | null;
     __dyn_component_props__?: Record<string, unknown>;
     /** Legacy compat aliases */
-    __maxr_manifest_id__?: string;
-    __maxr_parent_manifest_id__?: string;
-    __maxr_slot_name__?: string | null;
-    __maxr_component_props__?: Record<string, unknown>;
+    __dynlit_manifest_id__?: string;
+    __dynlit_parent_manifest_id__?: string;
+    __dynlit_slot_name__?: string | null;
+    __dynlit_component_props__?: Record<string, unknown>;
     /**
      * The widget ID that was active in this mount immediately before the current
      * component was loaded.  Used by navigateBack() to return there when there
@@ -1833,9 +1833,9 @@ export class DynComponentManager {
         }
 
         element.__dyn_manifest_id__ = manifest.id;
-        element.__maxr_manifest_id__ = manifest.id;
+        element.__dynlit_manifest_id__ = manifest.id;
         element.__dyn_component_props__ = props;
-        element.__maxr_component_props__ = props;
+        element.__dynlit_component_props__ = props;
         element.renderMode = manifest.renderMode;
 
         // Pass routing context so components can read route params via
@@ -1983,15 +1983,15 @@ export class DynComponentManager {
 
         childElement.__dyn_parent_manifest_id__ = parentManifest.id;
         childElement.__dyn_slot_name__ = slotElement.getAttribute('name');
-        childElement.__maxr_parent_manifest_id__ = parentManifest.id;
-        childElement.__maxr_slot_name__ = slotElement.getAttribute('name');
+        childElement.__dynlit_parent_manifest_id__ = parentManifest.id;
+        childElement.__dynlit_slot_name__ = slotElement.getAttribute('name');
 
         slotElement.innerHTML = '';
         slotElement.appendChild(childElement);
         slotElement.setAttribute('data-dyn-mounted', 'true');
-        slotElement.setAttribute('data-maxr-mounted', 'true'); // legacy compat
+        slotElement.setAttribute('data-dynlit-mounted', 'true'); // legacy compat
         slotElement.setAttribute('data-dyn-widget-id', dependencyManifest.id);
-        slotElement.setAttribute('data-maxr-widget-id', dependencyManifest.id); // legacy compat
+        slotElement.setAttribute('data-dynlit-widget-id', dependencyManifest.id); // legacy compat
 
         await this.waitForElementRender(childElement);
     }

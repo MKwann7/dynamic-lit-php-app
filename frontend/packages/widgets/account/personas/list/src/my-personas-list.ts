@@ -1,7 +1,7 @@
 import { html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { BaseEntityList } from '@maxr/shared';
-import type { FieldDef, FilterDef } from '@maxr/shared';
+import { BaseEntityList } from '@dynlit/shared';
+import type { FieldDef, FilterDef } from '@dynlit/shared';
 
 /** UUID of the Persona Dashboard component */
 const DASHBOARD_COMPONENT_ID = 'aa027e48-80e2-48ed-8027-594d703f005e';
@@ -19,8 +19,8 @@ interface PersonaItem extends Record<string, unknown> {
     updated_at:  string | null;
 }
 
-@customElement('maxr-my-personas-list')
-export class MaxrMyPersonasList extends BaseEntityList<PersonaItem> {
+@customElement('dynlit-my-personas-list')
+export class DynLitMyPersonasList extends BaseEntityList<PersonaItem> {
 
     // ── Config ────────────────────────────────────────────────────────────────
 
@@ -94,7 +94,7 @@ export class MaxrMyPersonasList extends BaseEntityList<PersonaItem> {
 
     protected override get createLabel() { return 'Purchase New Card'; }
 
-    protected override get itemUpdatedEvent() { return 'maxr:persona:updated'; }
+    protected override get itemUpdatedEvent() { return 'dynlit:persona:updated'; }
 
     // ── Configurable property ─────────────────────────────────────────────────
 

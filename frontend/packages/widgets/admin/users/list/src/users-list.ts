@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { BaseEntityList } from '@maxr/shared';
-import type { FieldDef, FilterDef } from '@maxr/shared';
+import { BaseEntityList } from '@dynlit/shared';
+import type { FieldDef, FilterDef } from '@dynlit/shared';
 
 /** UUID of the User Dashboard component */
 const DASHBOARD_COMPONENT_ID = 'cd2e54fc-8e07-4f9a-8f9c-24f9c929976c';
@@ -17,8 +17,8 @@ interface UserItem extends Record<string, unknown> {
     updated_at: string | null;
 }
 
-@customElement('maxr-users-list')
-export class MaxrUsersList extends BaseEntityList<UserItem> {
+@customElement('dynlit-users-list')
+export class DynLitUsersList extends BaseEntityList<UserItem> {
 
     // ── Config ────────────────────────────────────────────────────────────────
 
@@ -71,7 +71,7 @@ export class MaxrUsersList extends BaseEntityList<UserItem> {
 
     protected override get createLabel() { return 'Create New User'; }
 
-    protected override get itemUpdatedEvent() { return 'maxr:user:updated'; }
+    protected override get itemUpdatedEvent() { return 'dynlit:user:updated'; }
 
 
     // ── Configurable property ─────────────────────────────────────────────────

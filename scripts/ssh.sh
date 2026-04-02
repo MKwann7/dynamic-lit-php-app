@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -it maxr-app ash
+docker exec -it dynlit-app ash

@@ -1,9 +1,9 @@
-import { MaxrGroupDashboard } from './my-group-dashboard';
+import { DynLitGroupDashboard } from './my-group-dashboard';
 
-export { MaxrGroupDashboard };
+export { DynLitGroupDashboard };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-my-group-dashboard')) {
-        customElements.define('maxr-my-group-dashboard', MaxrGroupDashboard);
+    if (!customElements.get('dynlit-my-group-dashboard')) {
+        customElements.define('dynlit-my-group-dashboard', DynLitGroupDashboard);
     }
 }

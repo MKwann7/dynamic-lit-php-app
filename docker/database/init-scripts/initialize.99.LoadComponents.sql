@@ -2,7 +2,7 @@
 -- Generated at: 2026-04-01T22:53:41.507Z
 SET FOREIGN_KEY_CHECKS=0;
 
-USE `maxr_components`;
+USE `dynlit_components`;
 
 -- /dashboard@1.0.0
 INSERT INTO component (
@@ -15,9 +15,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Acount Dashboard',
+    'DynLit Acount Dashboard',
     'account-dashboard',
-    'maxr-account-dashboard',
+    'dynlit-account-dashboard',
     '/dashboard',
     'lit',
     UUID_TO_BIN('c6a9e0c8-0407-4a8a-b726-6024a9026288'),
@@ -43,9 +43,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Group Dashboard',
+    'DynLit Group Dashboard',
     'my-group-dashboard',
-    'maxr-my-group-dashboard',
+    'dynlit-my-group-dashboard',
     '/dashboard',
     'lit',
     UUID_TO_BIN('9bf9e360-1a53-402d-a7ea-612b947ca293'),
@@ -71,9 +71,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr My Groups',
+    'DynLit My Groups',
     'my-groups-list',
-    'maxr-my-groups-list',
+    'dynlit-my-groups-list',
     '/my-groups-list',
     'lit',
     UUID_TO_BIN('2d2dc08d-25a4-43ae-9e7b-afae92788222'),
@@ -99,9 +99,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Group Shell',
+    'DynLit Group Shell',
     'my-group-shell',
-    'maxr-my-group-shell',
+    'dynlit-my-group-shell',
     '/account/groups',
     'lit',
     UUID_TO_BIN('d5531037-f587-42e9-baf1-f409b452a7d0'),
@@ -127,9 +127,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Persona Dashboard',
+    'DynLit Persona Dashboard',
     'my-persona-dashboard',
-    'maxr-my-persona-dashboard',
+    'dynlit-my-persona-dashboard',
     '/dashboard',
     'lit',
     UUID_TO_BIN('aa027e48-80e2-48ed-8027-594d703f005e'),
@@ -155,9 +155,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr My Personas',
+    'DynLit My Personas',
     'my-personas-list',
-    'maxr-my-personas-list',
+    'dynlit-my-personas-list',
     '/my-personas-list',
     'lit',
     UUID_TO_BIN('0855e48d-7abd-488a-b4e9-4539771927fb'),
@@ -183,9 +183,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Persona Shell',
+    'DynLit Persona Shell',
     'my-persona-shell',
-    'maxr-my-persona-shell',
+    'dynlit-my-persona-shell',
     '/account/personas',
     'lit',
     UUID_TO_BIN('4c6d162b-1955-4256-bb6c-f954945fcf0a'),
@@ -213,7 +213,7 @@ INSERT INTO component (
 ) VALUES (
     'Account App',
     'account-shell',
-    'maxr-account-shell',
+    'dynlit-account-shell',
     '/account',
     'lit',
     UUID_TO_BIN('884f9a89-9df6-4c10-9c83-3b2d9f7d6a11'),
@@ -239,9 +239,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Site Dashboard',
+    'DynLit Site Dashboard',
     'my-site-dashboard',
-    'maxr-my-site-dashboard',
+    'dynlit-my-site-dashboard',
     '/dashboard',
     'lit',
     UUID_TO_BIN('5f87e9f7-c5ed-40ab-abc1-944a8733a3c4'),
@@ -267,9 +267,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr My Sites',
+    'DynLit My Sites',
     'my-sites-list',
-    'maxr-my-sites-list',
+    'dynlit-my-sites-list',
     '/my-sites-list',
     'lit',
     UUID_TO_BIN('f38419fd-e9a9-4b59-9c49-396cac867a7f'),
@@ -295,9 +295,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Site Profile Manage',
+    'DynLit Site Profile Manage',
     'site-profile-manage',
-    'maxr-site-profile-manage',
+    'dynlit-site-profile-manage',
     '/site-profile-manage',
     'lit',
     UUID_TO_BIN('cbd0cab1-1906-49b5-bbe3-ffdcb7e616d2'),
@@ -323,9 +323,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Site Shell',
+    'DynLit Site Shell',
     'my-site-shell',
-    'maxr-my-site-shell',
+    'dynlit-my-site-shell',
     '/account/sites',
     'lit',
     UUID_TO_BIN('22858f3d-af0b-43bc-9b82-1d5c4b6cfe86'),
@@ -351,9 +351,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Site Theme Settings',
+    'DynLit Site Theme Settings',
     'site-theme-settings',
-    'maxr-site-theme-settings',
+    'dynlit-site-theme-settings',
     '/site-theme-settings',
     'lit',
     UUID_TO_BIN('44f8672a-7897-4c74-a120-e2d6908ef5ea'),
@@ -379,9 +379,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Site User Manage',
+    'DynLit Site User Manage',
     'site-user-manage',
-    'maxr-site-user-manage',
+    'dynlit-site-user-manage',
     '/site-user-manage',
     'lit',
     UUID_TO_BIN('e6cde524-13f5-4db2-86cf-d0304c07f420'),
@@ -407,9 +407,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Admin Group Dashboard',
+    'DynLit Admin Group Dashboard',
     'admin-group-dashboard',
-    'maxr-admin-group-dashboard',
+    'dynlit-admin-group-dashboard',
     '/admin-group-dashboard',
     'lit',
     UUID_TO_BIN('e0908bdf-231d-413b-bd89-60f81184c9e1'),
@@ -435,9 +435,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Admin Groups List',
+    'DynLit Admin Groups List',
     'admin-groups-list',
-    'maxr-admin-groups-list',
+    'dynlit-admin-groups-list',
     '/admin-groups-list',
     'lit',
     UUID_TO_BIN('62b74c00-d006-4416-bb79-8d9662d42ec5'),
@@ -463,9 +463,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Admin Groups Shell',
+    'DynLit Admin Groups Shell',
     'admin-groups-shell',
-    'maxr-admin-groups-shell',
+    'dynlit-admin-groups-shell',
     '/administrator/groups',
     'lit',
     UUID_TO_BIN('aeae410a-eefd-445d-8b14-801cbc9b89e4'),
@@ -493,7 +493,7 @@ INSERT INTO component (
 ) VALUES (
     'Admin App',
     'admin-shell',
-    'maxr-admin-shell',
+    'dynlit-admin-shell',
     '/administrator',
     'lit',
     UUID_TO_BIN('fdb6d0fe-2b7e-4709-a0f7-2ec2d6d8ea2b'),
@@ -519,9 +519,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Admin Site Dashboard',
+    'DynLit Admin Site Dashboard',
     'admin-site-dashboard',
-    'maxr-admin-site-dashboard',
+    'dynlit-admin-site-dashboard',
     '/admin-site-dashboard',
     'lit',
     UUID_TO_BIN('259955dc-6deb-419b-a00f-e1da00734638'),
@@ -547,9 +547,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Admin Sites List',
+    'DynLit Admin Sites List',
     'admin-sites-list',
-    'maxr-admin-sites-list',
+    'dynlit-admin-sites-list',
     '/admin-sites-list',
     'lit',
     UUID_TO_BIN('2f210e3b-d4b3-4fc3-ba00-577e7745be96'),
@@ -575,9 +575,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Admin Sites Shell',
+    'DynLit Admin Sites Shell',
     'admin-sites-shell',
-    'maxr-admin-sites-shell',
+    'dynlit-admin-sites-shell',
     '/administrator/sites',
     'lit',
     UUID_TO_BIN('54b49430-e9f8-4144-b45b-adf2b377af9a'),
@@ -603,9 +603,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr User Dashboard',
+    'DynLit User Dashboard',
     'user-dashboard',
-    'maxr-user-dashboard',
+    'dynlit-user-dashboard',
     '/user-dashboard',
     'lit',
     UUID_TO_BIN('cd2e54fc-8e07-4f9a-8f9c-24f9c929976c'),
@@ -631,9 +631,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Users List',
+    'DynLit Users List',
     'users-list',
-    'maxr-users-list',
+    'dynlit-users-list',
     '/users-list',
     'lit',
     UUID_TO_BIN('bc11597b-8965-485a-b1e9-bc376181d8b5'),
@@ -661,7 +661,7 @@ INSERT INTO component (
 ) VALUES (
     'User Profile Manage',
     'user-profile-manage',
-    'maxr-user-profile-manage',
+    'dynlit-user-profile-manage',
     '/user-profile-manage',
     'lit',
     UUID_TO_BIN('7b3f9c2e-1a4d-4e8b-a5f6-9d2c1b8e3a7f'),
@@ -687,9 +687,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Users Shell',
+    'DynLit Users Shell',
     'users-shell',
-    'maxr-users-shell',
+    'dynlit-users-shell',
     '/administrator/users',
     'lit',
     UUID_TO_BIN('ccd31d3c-9a2e-4fb0-96ac-0c764d033e0c'),
@@ -717,7 +717,7 @@ INSERT INTO component (
 ) VALUES (
     'Create Account',
     'create-account',
-    'maxr-create-account',
+    'dynlit-create-account',
     '/create-account',
     'lit',
     UUID_TO_BIN('a864554e-09b3-4008-a9b3-dac9632a2c45'),
@@ -745,7 +745,7 @@ INSERT INTO component (
 ) VALUES (
     'Account Login',
     'login',
-    'maxr-login',
+    'dynlit-login',
     '/login',
     'lit',
     UUID_TO_BIN('122160fe-9981-4d3d-8218-fabdd279713a'),
@@ -771,9 +771,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr Manage Image',
+    'DynLit Manage Image',
     'manage-image',
-    'maxr-manage-image',
+    'dynlit-manage-image',
     '/manage-image',
     'lit',
     UUID_TO_BIN('9acf0ea8-a2ab-4cf8-9238-70e1db06acac'),
@@ -799,9 +799,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr List Images',
+    'DynLit List Images',
     'list-images',
-    'maxr-list-images',
+    'dynlit-list-images',
     '/list-images',
     'lit',
     UUID_TO_BIN('07c6eb48-251c-4880-ae0c-5b74a1e25489'),
@@ -829,7 +829,7 @@ INSERT INTO component (
 ) VALUES (
     'Password Reset',
     'password-reset',
-    'maxr-password-reset',
+    'dynlit-password-reset',
     '/password-reset',
     'lit',
     UUID_TO_BIN('65c1ef41-7b47-4153-8fe1-e4a14b39b3b1'),
@@ -857,7 +857,7 @@ INSERT INTO component (
 ) VALUES (
     'Groups App',
     'group',
-    'maxr-group',
+    'dynlit-group',
     '/groups',
     'lit',
     UUID_TO_BIN('9e6fbbd4-f7f0-4fa7-b0a7-4ef5d2f4f1c9'),
@@ -885,7 +885,7 @@ INSERT INTO component (
 ) VALUES (
     'Persona App',
     'persona',
-    'maxr-persona',
+    'dynlit-persona',
     '/personas',
     'lit',
     UUID_TO_BIN('3ca0b3a2-08b0-4df0-9049-78cf163e9d7d'),
@@ -913,7 +913,7 @@ INSERT INTO component (
 ) VALUES (
     'Sites App',
     'site',
-    'maxr-site',
+    'dynlit-site',
     '/sites',
     'lit',
     UUID_TO_BIN('9e4bcfcb-a458-4bda-8c1c-671173b79df8'),
@@ -941,7 +941,7 @@ INSERT INTO component (
 ) VALUES (
     'EZcard Footer',
     'ezcard-footer',
-    'maxr-ezcard-footer',
+    'dynlit-ezcard-footer',
     NULL,
     'lit',
     UUID_TO_BIN('cae954dc-4b9a-41fc-96b1-46562b5f9228'),
@@ -969,7 +969,7 @@ INSERT INTO component (
 ) VALUES (
     'EZcard Header',
     'ezcard-header',
-    'maxr-ezcard-header',
+    'dynlit-ezcard-header',
     NULL,
     'lit',
     UUID_TO_BIN('a34b3a38-a59d-4b35-befd-b296e435111a'),
@@ -997,7 +997,7 @@ INSERT INTO component (
 ) VALUES (
     'EZcard Nav',
     'ezcard-nav',
-    'maxr-ezcard-nav',
+    'dynlit-ezcard-nav',
     NULL,
     'lit',
     UUID_TO_BIN('21ffc367-a1e9-4b92-a487-d13b8e283059'),
@@ -1023,9 +1023,9 @@ INSERT INTO component (
     created_at,
     updated_at
 ) VALUES (
-    'Maxr My Profile Dropdown',
+    'DynLit My Profile Dropdown',
     'my-profile-dropdown',
-    'maxr-my-profile-dropdown',
+    'dynlit-my-profile-dropdown',
     '/my-profile-dropdown',
     'lit',
     UUID_TO_BIN('ad1701a6-00b1-4d29-b96f-716e96e2842e'),
@@ -1066,7 +1066,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"c6a9e0c8-0407-4a8a-b726-6024a9026288","name":"Maxr Acount Dashboard","tag":"account-dashboard","uri":"/dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"c6a9e0c8-0407-4a8a-b726-6024a9026288","name":"DynLit Acount Dashboard","tag":"account-dashboard","uri":"/dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1110,7 +1110,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"9bf9e360-1a53-402d-a7ea-612b947ca293","name":"Maxr Group Dashboard","tag":"my-group-dashboard","uri":"/dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/groups/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"9bf9e360-1a53-402d-a7ea-612b947ca293","name":"DynLit Group Dashboard","tag":"my-group-dashboard","uri":"/dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/groups/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1154,7 +1154,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"2d2dc08d-25a4-43ae-9e7b-afae92788222","name":"Maxr My Groups","tag":"my-groups-list","uri":"/my-groups-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/groups/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[{"id":"9bf9e360-1a53-402d-a7ea-612b947ca293","required":true,"type":"slot","sortOrder":0,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"2d2dc08d-25a4-43ae-9e7b-afae92788222","name":"DynLit My Groups","tag":"my-groups-list","uri":"/my-groups-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/groups/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[{"id":"9bf9e360-1a53-402d-a7ea-612b947ca293","required":true,"type":"slot","sortOrder":0,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1198,7 +1198,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     'My Groups',
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"d5531037-f587-42e9-baf1-f409b452a7d0","name":"Maxr Group Shell","tag":"my-group-shell","uri":"/account/groups","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/groups/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"2d2dc08d-25a4-43ae-9e7b-afae92788222","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"9bf9e360-1a53-402d-a7ea-612b947ca293","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"My Groups"}' AS JSON),
+    CAST('{"id":"d5531037-f587-42e9-baf1-f409b452a7d0","name":"DynLit Group Shell","tag":"my-group-shell","uri":"/account/groups","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/groups/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"2d2dc08d-25a4-43ae-9e7b-afae92788222","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"9bf9e360-1a53-402d-a7ea-612b947ca293","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"My Groups"}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1242,7 +1242,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"aa027e48-80e2-48ed-8027-594d703f005e","name":"Maxr Persona Dashboard","tag":"my-persona-dashboard","uri":"/dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/personas/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"aa027e48-80e2-48ed-8027-594d703f005e","name":"DynLit Persona Dashboard","tag":"my-persona-dashboard","uri":"/dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/personas/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1286,7 +1286,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"0855e48d-7abd-488a-b4e9-4539771927fb","name":"Maxr My Personas","tag":"my-personas-list","uri":"/my-personas-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/personas/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[{"id":"aa027e48-80e2-48ed-8027-594d703f005e","required":true,"type":"slot","sortOrder":0,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"0855e48d-7abd-488a-b4e9-4539771927fb","name":"DynLit My Personas","tag":"my-personas-list","uri":"/my-personas-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/personas/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[{"id":"aa027e48-80e2-48ed-8027-594d703f005e","required":true,"type":"slot","sortOrder":0,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1330,7 +1330,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     'My Personas',
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"4c6d162b-1955-4256-bb6c-f954945fcf0a","name":"Maxr Persona Shell","tag":"my-persona-shell","uri":"/account/personas","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/personas/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"0855e48d-7abd-488a-b4e9-4539771927fb","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"aa027e48-80e2-48ed-8027-594d703f005e","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"My Personas"}' AS JSON),
+    CAST('{"id":"4c6d162b-1955-4256-bb6c-f954945fcf0a","name":"DynLit Persona Shell","tag":"my-persona-shell","uri":"/account/personas","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/personas/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"0855e48d-7abd-488a-b4e9-4539771927fb","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"aa027e48-80e2-48ed-8027-594d703f005e","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"My Personas"}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1418,7 +1418,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"5f87e9f7-c5ed-40ab-abc1-944a8733a3c4","name":"Maxr Site Dashboard","tag":"my-site-dashboard","uri":"/dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"5f87e9f7-c5ed-40ab-abc1-944a8733a3c4","name":"DynLit Site Dashboard","tag":"my-site-dashboard","uri":"/dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1462,7 +1462,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     'Sites',
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"f38419fd-e9a9-4b59-9c49-396cac867a7f","name":"Maxr My Sites","tag":"my-sites-list","uri":"/my-sites-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[{"id":"5f87e9f7-c5ed-40ab-abc1-944a8733a3c4","required":true,"type":"slot","sortOrder":0,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"Sites"}' AS JSON),
+    CAST('{"id":"f38419fd-e9a9-4b59-9c49-396cac867a7f","name":"DynLit My Sites","tag":"my-sites-list","uri":"/my-sites-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[{"id":"5f87e9f7-c5ed-40ab-abc1-944a8733a3c4","required":true,"type":"slot","sortOrder":0,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"Sites"}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1506,7 +1506,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"cbd0cab1-1906-49b5-bbe3-ffdcb7e616d2","name":"Maxr Site Profile Manage","tag":"site-profile-manage","uri":"/site-profile-manage","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/profile-manage/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"cbd0cab1-1906-49b5-bbe3-ffdcb7e616d2","name":"DynLit Site Profile Manage","tag":"site-profile-manage","uri":"/site-profile-manage","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/profile-manage/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1550,7 +1550,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     'My Sites',
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"22858f3d-af0b-43bc-9b82-1d5c4b6cfe86","name":"Maxr Site Shell","tag":"my-site-shell","uri":"/account/sites","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"f38419fd-e9a9-4b59-9c49-396cac867a7f","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"5f87e9f7-c5ed-40ab-abc1-944a8733a3c4","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"My Sites"}' AS JSON),
+    CAST('{"id":"22858f3d-af0b-43bc-9b82-1d5c4b6cfe86","name":"DynLit Site Shell","tag":"my-site-shell","uri":"/account/sites","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"f38419fd-e9a9-4b59-9c49-396cac867a7f","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"5f87e9f7-c5ed-40ab-abc1-944a8733a3c4","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"My Sites"}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1594,7 +1594,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"44f8672a-7897-4c74-a120-e2d6908ef5ea","name":"Maxr Site Theme Settings","tag":"site-theme-settings","uri":"/site-theme-settings","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/theme-settings/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"44f8672a-7897-4c74-a120-e2d6908ef5ea","name":"DynLit Site Theme Settings","tag":"site-theme-settings","uri":"/site-theme-settings","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/theme-settings/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1638,7 +1638,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"e6cde524-13f5-4db2-86cf-d0304c07f420","name":"Maxr Site User Manage","tag":"site-user-manage","uri":"/site-user-manage","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/user-manage/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"e6cde524-13f5-4db2-86cf-d0304c07f420","name":"DynLit Site User Manage","tag":"site-user-manage","uri":"/site-user-manage","version":"1.0.0","framework":"lit","entry":"/assets/widgets/account/sites/user-manage/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1682,7 +1682,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"e0908bdf-231d-413b-bd89-60f81184c9e1","name":"Maxr Admin Group Dashboard","tag":"admin-group-dashboard","uri":"/admin-group-dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/groups/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"e0908bdf-231d-413b-bd89-60f81184c9e1","name":"DynLit Admin Group Dashboard","tag":"admin-group-dashboard","uri":"/admin-group-dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/groups/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1726,7 +1726,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"62b74c00-d006-4416-bb79-8d9662d42ec5","name":"Maxr Admin Groups List","tag":"admin-groups-list","uri":"/admin-groups-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/groups/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"62b74c00-d006-4416-bb79-8d9662d42ec5","name":"DynLit Admin Groups List","tag":"admin-groups-list","uri":"/admin-groups-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/groups/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1770,7 +1770,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     'Groups',
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"aeae410a-eefd-445d-8b14-801cbc9b89e4","name":"Maxr Admin Groups Shell","tag":"admin-groups-shell","uri":"/administrator/groups","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/groups/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"62b74c00-d006-4416-bb79-8d9662d42ec5","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"e0908bdf-231d-413b-bd89-60f81184c9e1","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"Groups"}' AS JSON),
+    CAST('{"id":"aeae410a-eefd-445d-8b14-801cbc9b89e4","name":"DynLit Admin Groups Shell","tag":"admin-groups-shell","uri":"/administrator/groups","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/groups/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"62b74c00-d006-4416-bb79-8d9662d42ec5","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"e0908bdf-231d-413b-bd89-60f81184c9e1","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"Groups"}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1858,7 +1858,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"259955dc-6deb-419b-a00f-e1da00734638","name":"Maxr Admin Site Dashboard","tag":"admin-site-dashboard","uri":"/admin-site-dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/sites/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"259955dc-6deb-419b-a00f-e1da00734638","name":"DynLit Admin Site Dashboard","tag":"admin-site-dashboard","uri":"/admin-site-dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/sites/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1902,7 +1902,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"2f210e3b-d4b3-4fc3-ba00-577e7745be96","name":"Maxr Admin Sites List","tag":"admin-sites-list","uri":"/admin-sites-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/sites/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"2f210e3b-d4b3-4fc3-ba00-577e7745be96","name":"DynLit Admin Sites List","tag":"admin-sites-list","uri":"/admin-sites-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/sites/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1946,7 +1946,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     'Sites',
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"54b49430-e9f8-4144-b45b-adf2b377af9a","name":"Maxr Admin Sites Shell","tag":"admin-sites-shell","uri":"/administrator/sites","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/sites/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"2f210e3b-d4b3-4fc3-ba00-577e7745be96","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"259955dc-6deb-419b-a00f-e1da00734638","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"Sites"}' AS JSON),
+    CAST('{"id":"54b49430-e9f8-4144-b45b-adf2b377af9a","name":"DynLit Admin Sites Shell","tag":"admin-sites-shell","uri":"/administrator/sites","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/sites/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"2f210e3b-d4b3-4fc3-ba00-577e7745be96","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"259955dc-6deb-419b-a00f-e1da00734638","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"Sites"}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -1990,7 +1990,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"cd2e54fc-8e07-4f9a-8f9c-24f9c929976c","name":"Maxr User Dashboard","tag":"user-dashboard","uri":"/user-dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/users/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"0855e48d-7abd-488a-b4e9-4539771927fb","required":true,"type":"slot","sortOrder":0,"mount_id":"ud-personas-section","path":"personas"},{"id":"f38419fd-e9a9-4b59-9c49-396cac867a7f","required":true,"type":"slot","sortOrder":1,"mount_id":"ud-sites-section","path":"sites"},{"id":"2d2dc08d-25a4-43ae-9e7b-afae92788222","required":true,"type":"slot","sortOrder":2,"mount_id":"ud-groups-section","path":"groups"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"cd2e54fc-8e07-4f9a-8f9c-24f9c929976c","name":"DynLit User Dashboard","tag":"user-dashboard","uri":"/user-dashboard","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/users/dashboard/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"0855e48d-7abd-488a-b4e9-4539771927fb","required":true,"type":"slot","sortOrder":0,"mount_id":"ud-personas-section","path":"personas"},{"id":"f38419fd-e9a9-4b59-9c49-396cac867a7f","required":true,"type":"slot","sortOrder":1,"mount_id":"ud-sites-section","path":"sites"},{"id":"2d2dc08d-25a4-43ae-9e7b-afae92788222","required":true,"type":"slot","sortOrder":2,"mount_id":"ud-groups-section","path":"groups"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -2034,7 +2034,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"bc11597b-8965-485a-b1e9-bc376181d8b5","name":"Maxr Users List","tag":"users-list","uri":"/users-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/users/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"bc11597b-8965-485a-b1e9-bc376181d8b5","name":"DynLit Users List","tag":"users-list","uri":"/users-list","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/users/list/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -2122,7 +2122,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     'Users',
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"ccd31d3c-9a2e-4fb0-96ac-0c764d033e0c","name":"Maxr Users Shell","tag":"users-shell","uri":"/administrator/users","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/users/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"bc11597b-8965-485a-b1e9-bc376181d8b5","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"cd2e54fc-8e07-4f9a-8f9c-24f9c929976c","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"Users"}' AS JSON),
+    CAST('{"id":"ccd31d3c-9a2e-4fb0-96ac-0c764d033e0c","name":"DynLit Users Shell","tag":"users-shell","uri":"/administrator/users","version":"1.0.0","framework":"lit","entry":"/assets/widgets/admin/users/shell/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[{"id":"bc11597b-8965-485a-b1e9-bc376181d8b5","required":true,"type":"parent-slot","sortOrder":10,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"/"},{"id":"cd2e54fc-8e07-4f9a-8f9c-24f9c929976c","required":true,"type":"parent-slot","sortOrder":15,"mount_id":"f559b17e-fed9-4484-adb6-8632ebf647c0","path":"{uuid}"}],"exports":{"define":"defineWidget"},"breadcrumbLabel":"Users"}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -2254,7 +2254,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"9acf0ea8-a2ab-4cf8-9238-70e1db06acac","name":"Maxr Manage Image","tag":"manage-image","uri":"/manage-image","version":"1.0.0","framework":"lit","entry":"/assets/widgets/managers/media/images/1.0.0/index.js","cssPath":"/assets/widgets/managers/media/images/1.0.0/style.css","integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"9acf0ea8-a2ab-4cf8-9238-70e1db06acac","name":"DynLit Manage Image","tag":"manage-image","uri":"/manage-image","version":"1.0.0","framework":"lit","entry":"/assets/widgets/managers/media/images/1.0.0/index.js","cssPath":"/assets/widgets/managers/media/images/1.0.0/style.css","integrity":null,"renderMode":"light","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -2298,7 +2298,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"07c6eb48-251c-4880-ae0c-5b74a1e25489","name":"Maxr List Images","tag":"list-images","uri":"/list-images","version":"1.0.0","framework":"lit","entry":"/assets/widgets/managers/media/list-images/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"07c6eb48-251c-4880-ae0c-5b74a1e25489","name":"DynLit List Images","tag":"list-images","uri":"/list-images","version":"1.0.0","framework":"lit","entry":"/assets/widgets/managers/media/list-images/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP
@@ -2650,7 +2650,7 @@ INSERT INTO component_version (
     CAST('[]' AS JSON),
     NULL,
     CAST('{"define":"defineWidget"}' AS JSON),
-    CAST('{"id":"ad1701a6-00b1-4d29-b96f-716e96e2842e","name":"Maxr My Profile Dropdown","tag":"my-profile-dropdown","uri":"/my-profile-dropdown","version":"1.0.0","framework":"lit","entry":"/assets/widgets/templates/ezcard/profile-dropdown-menu/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
+    CAST('{"id":"ad1701a6-00b1-4d29-b96f-716e96e2842e","name":"DynLit My Profile Dropdown","tag":"my-profile-dropdown","uri":"/my-profile-dropdown","version":"1.0.0","framework":"lit","entry":"/assets/widgets/templates/ezcard/profile-dropdown-menu/1.0.0/index.js","cssPath":null,"integrity":null,"renderMode":"shadow","themeAware":true,"exposeParts":[],"dependencies":[],"exports":{"define":"defineWidget"},"breadcrumbLabel":null}' AS JSON),
     'active',
     CURRENT_TIMESTAMP,
     CURRENT_TIMESTAMP

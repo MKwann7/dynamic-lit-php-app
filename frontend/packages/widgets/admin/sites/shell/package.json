@@ -1,12 +1,12 @@
 {
-  "name": "@maxr/admin-sites-shell",
+  "name": "@dynlit/admin-sites-shell",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": { "build": "vite build", "dev": "vite build --watch" },
   "dependencies": {
     "lit": "^3.2.0",
-    "@maxr/shared": "1.0.0",
-    "@maxr/my-site-shell": "1.0.0"
+    "@dynlit/shared": "1.0.0",
+    "@dynlit/my-site-shell": "1.0.0"
   }
 }

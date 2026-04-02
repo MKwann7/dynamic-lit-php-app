@@ -60,9 +60,9 @@ ui-deploy:
 .PHONY: ui-full-deploy
 
 ui-full-deploy:
-	@if ! docker ps --filter "name=maxr-db" --filter "status=running" --format "{{.Names}}" 2>/dev/null | grep -q "maxr-db"; then \
+	@if ! docker ps --filter "name=dynlit-db" --filter "status=running" --format "{{.Names}}" 2>/dev/null | grep -q "dynlit-db"; then \
 		echo ""; \
-		echo "⚠️  The 'maxr-db' Docker container is not running."; \
+		echo "⚠️  The 'dynlit-db' Docker container is not running."; \
 		echo "   Start the stack first with:  make run"; \
 		echo "   The sync step will retry for up to 30s, then fail if the DB is still unreachable."; \
 		echo ""; \

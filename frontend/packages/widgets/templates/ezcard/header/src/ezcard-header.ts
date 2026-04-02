@@ -1,12 +1,12 @@
 import {css, html, nothing} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
-import type { BreadcrumbItem } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
+import type { BreadcrumbItem } from '@dynlit/shared';
 
 /** UUID of the profile dropdown menu component */
 const PROFILE_DROPDOWN_UUID = 'ad1701a6-00b1-4d29-b96f-716e96e2842e';
 
-@customElement('maxr-ezcard-header')
+@customElement('dynlit-ezcard-header')
 export class EzcardHeader extends RuntimeWidgetElement {
 
     @state() private crumbs: BreadcrumbItem[] = [{ label: 'Home', path: '/' }];

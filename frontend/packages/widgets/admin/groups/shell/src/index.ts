@@ -1,9 +1,9 @@
-import { MaxrAdminGroupsShell } from './admin-groups-shell';
+import { DynLitAdminGroupsShell } from './admin-groups-shell';
 
-export { MaxrAdminGroupsShell };
+export { DynLitAdminGroupsShell };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-admin-groups-shell')) {
-        customElements.define('maxr-admin-groups-shell', MaxrAdminGroupsShell);
+    if (!customElements.get('dynlit-admin-groups-shell')) {
+        customElements.define('dynlit-admin-groups-shell', DynLitAdminGroupsShell);
     }
 }

@@ -1,8 +1,8 @@
 import {css, html} from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-ezcard-nav')
+@customElement('dynlit-ezcard-nav')
 export class EzcardNav extends RuntimeWidgetElement {
     connectedCallback() {
         super.connectedCallback();

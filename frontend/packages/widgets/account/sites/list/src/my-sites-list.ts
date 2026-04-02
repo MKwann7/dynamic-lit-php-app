@@ -1,7 +1,7 @@
 import { html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { BaseEntityList } from '@maxr/shared';
-import type { FieldDef, FilterDef } from '@maxr/shared';
+import { BaseEntityList } from '@dynlit/shared';
+import type { FieldDef, FilterDef } from '@dynlit/shared';
 
 /** UUID of the Site Dashboard component */
 const DASHBOARD_COMPONENT_ID = '5f87e9f7-c5ed-40ab-abc1-944a8733a3c4';
@@ -19,8 +19,8 @@ interface SiteItem extends Record<string, unknown> {
     updated_at:  string | null;
 }
 
-@customElement('maxr-my-sites-list')
-export class MaxrMySitesList extends BaseEntityList<SiteItem> {
+@customElement('dynlit-my-sites-list')
+export class DynLitMySitesList extends BaseEntityList<SiteItem> {
 
     // ── Config ────────────────────────────────────────────────────────────────
 
@@ -91,7 +91,7 @@ export class MaxrMySitesList extends BaseEntityList<SiteItem> {
 
     protected override get createLabel() { return 'Create New Site'; }
 
-    protected override get itemUpdatedEvent() { return 'maxr:site:updated'; }
+    protected override get itemUpdatedEvent() { return 'dynlit:site:updated'; }
 
 
     // ── Configurable property ─────────────────────────────────────────────────

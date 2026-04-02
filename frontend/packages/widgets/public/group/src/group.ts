@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-group')
-export class MaxrGroup extends RuntimeWidgetElement {
+@customElement('dynlit-group')
+export class DynLitGroup extends RuntimeWidgetElement {
     @property({ type: String })
     title = 'Group';
 

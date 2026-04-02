@@ -218,8 +218,8 @@ class ServicesTest extends TestCase
     }
 
     /**
-     * Test that jwtPayloadFactory() falls back to 'maxr-app' issuer and
-     * 'maxr-app-clients' audience when the env vars are absent.
+     * Test that jwtPayloadFactory() falls back to 'dynlit-app' issuer and
+     * 'dynlit-app-clients' audience when the env vars are absent.
      */
     public function testJwtPayloadFactoryUsesDefaultsWhenEnvVarsAbsent(): void
     {
@@ -229,8 +229,8 @@ class ServicesTest extends TestCase
 
         $payload = (new Services($this->buildContainerMock()))->jwtPayloadFactory()->make('test');
 
-        $this->assertSame('maxr-app',         $payload['iss']);
-        $this->assertSame('maxr-app-clients', $payload['aud']);
+        $this->assertSame('dynlit-app',         $payload['iss']);
+        $this->assertSame('dynlit-app-clients', $payload['aud']);
     }
 
     // -------------------------------------------------------------------------

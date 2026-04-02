@@ -1,9 +1,9 @@
-import { MaxrMyPersonasList } from './my-personas-list';
+import { DynLitMyPersonasList } from './my-personas-list';
 
-export { MaxrMyPersonasList };
+export { DynLitMyPersonasList };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-my-personas-list')) {
-        customElements.define('maxr-my-personas-list', MaxrMyPersonasList);
+    if (!customElements.get('dynlit-my-personas-list')) {
+        customElements.define('dynlit-my-personas-list', DynLitMyPersonasList);
     }
 }

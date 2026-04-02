@@ -8,7 +8,7 @@
 
 ## What this app is
 
-**Maxr** (internal name `maxr.docker` locally) is a white-label site-publishing SaaS platform.
+**DynLit** (internal name `dynlit.docker` locally) is a white-label site-publishing SaaS platform.
 It is a PHP 8 backend serving a **micro-frontend SPA** whose UI is composed entirely of
 independently-built **Lit web components** ("widgets") that are loaded on-demand at runtime.
 There is no traditional page reload after boot; all navigation is client-side history.pushState.
@@ -60,15 +60,15 @@ frontend/
         dashboard/        Group dashboard
       account/personas/
       admin/
-        shell/            Admin app shell  (extends MaxrAccountShell)
+        shell/            Admin app shell  (extends DynLitAccountShell)
         sites/
           shell/          Admin Sites section shell  (parent-slot deps → admin list + dashboard)
-          list/           Admin Sites list  (extends MaxrMySitesList, scope=whitelabel)
-          dashboard/      Admin Site dashboard  (extends MaxrSiteDashboard)
+          list/           Admin Sites list  (extends DynLitMySitesList, scope=whitelabel)
+          dashboard/      Admin Site dashboard  (extends DynLitSiteDashboard)
         groups/
           shell/          Admin Groups section shell
-          list/           Admin Groups list  (extends MaxrMyGroupsList, scope=whitelabel)
-          dashboard/      Admin Group dashboard  (extends MaxrGroupDashboard)
+          list/           Admin Groups list  (extends DynLitMyGroupsList, scope=whitelabel)
+          dashboard/      Admin Group dashboard  (extends DynLitGroupDashboard)
       login/
       ...
 ```
@@ -98,7 +98,7 @@ Every widget ships a `component.json` describing it:
   "id":          "<uuid>",            // stable public ID
   "name":        "Human name",
   "tag":         "my-widget",         // legacy HTML tag (may differ from el_name)
-  "el_name":     "maxr-my-widget",    // actual custom element tag used in document.createElement
+  "el_name":     "dynlit-my-widget",    // actual custom element tag used in document.createElement
   "uri":         "/account/sites",    // route this manifest owns
   "version":     "1.0.0",
   "framework":   "lit",
@@ -193,7 +193,7 @@ Account and admin widgets share base classes. The two layers differ only in:
 |---|---|---|
 | `buildExtraParams()` | `{ scope: 'owned' }` | `{ scope: 'whitelabel' }` |
 | Filters by | `owner_id` / `site_user_id` matching logged-in user | `whitelabel_id` matching logged-in admin |
-| Base class | `BaseEntityList` | Account list class (e.g. `MaxrMySitesList`) |
+| Base class | `BaseEntityList` | Account list class (e.g. `DynLitMySitesList`) |
 
 The `scope` query param is interpreted server-side in the controller/repository layer.
 
@@ -553,8 +553,8 @@ this.runtime.loadComponentOnMount(widgetId, 'f559b17e-fed9-4484-adb6-8632ebf647c
 4. Run `npm install` from `frontend/` to re-link workspace packages.
 
 ```typescript
-@customElement('maxr-admin-sites-list')
-export class MaxrAdminSitesList extends MaxrMySitesList {
+@customElement('dynlit-admin-sites-list')
+export class DynLitAdminSitesList extends DynLitMySitesList {
     override dashboardComponentId = ADMIN_DASHBOARD_COMPONENT_ID; // admin UUID
     protected override buildExtraParams() { return { scope: 'whitelabel' }; }
 }

@@ -1,7 +1,7 @@
 services:
   app:
-    hostname: maxr-app.docker
-    container_name: maxr-app
+    hostname: dynlit-app.docker
+    container_name: dynlit-app
     build:
       context: ./../
       dockerfile: ./docker/Dockerfile
@@ -17,12 +17,12 @@ services:
       - "./../vendor:/app/vendor"
       - "./../tests:/app/tests"
     networks:
-      maxr_bridge:
+      dynlit_bridge:
         ipv4_address: 172.25.0.10
   db:
-    hostname: maxr-db.docker
+    hostname: dynlit-db.docker
     image: 'mysql:8.4'
-    container_name: maxr-db
+    container_name: dynlit-db
     shm_size: 2gb
     environment:
       MYSQL_ROOT_PASSWORD: f77tD2n9mAZUCV0hnVbu
@@ -32,7 +32,7 @@ services:
       - "./../docker/database/mysql-data:/var/lib/mysql"
       - "./../docker/database/init-scripts:/docker-entrypoint-initdb.d"
     networks:
-      maxr_bridge:
+      dynlit_bridge:
         ipv4_address: 172.25.0.15
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-pf77tD2n9mAZUCV0hnVbu" ]
@@ -41,8 +41,8 @@ services:
       retries: 20
       start_period: 20s
   assets:
-    hostname: maxr-assets.docker
-    container_name: maxr-assets
+    hostname: dynlit-assets.docker
+    container_name: dynlit-assets
     build:
       context: ./../
       dockerfile: ./docker/Dockerfile.assets
@@ -54,11 +54,11 @@ services:
     volumes:
       - "./../frontend/dist:/usr/share/nginx/html/assets:ro"
     networks:
-      maxr_bridge:
+      dynlit_bridge:
         ipv4_address: 172.25.0.20
   media:
-    hostname: maxr-media.docker
-    container_name: maxr-media
+    hostname: dynlit-media.docker
+    container_name: dynlit-media
     build:
       context: ./../services/media
       dockerfile: ./docker/Dockerfile
@@ -74,11 +74,11 @@ services:
       # Persistent media storage
       - "./../services/media/storage:/app/storage"
     networks:
-      maxr_bridge:
+      dynlit_bridge:
         ipv4_address: 172.25.0.25
 
 networks:
-  maxr_bridge:
+  dynlit_bridge:
     driver: bridge
     ipam:
       driver: default

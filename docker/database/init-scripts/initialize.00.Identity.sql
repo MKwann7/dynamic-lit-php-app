@@ -7,9 +7,9 @@
 
 SET GLOBAL log_bin_trust_function_creators = 1;
 
--- Dumping database structure for maxr_whitelabel
-CREATE DATABASE IF NOT EXISTS `maxr_whitelabel` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `maxr_whitelabel`;
+-- Dumping database structure for dynlit_identity
+CREATE DATABASE IF NOT EXISTS `dynlit_identity` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+USE `dynlit_identity`;
 
 CREATE TABLE IF NOT EXISTS `whitelabel` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

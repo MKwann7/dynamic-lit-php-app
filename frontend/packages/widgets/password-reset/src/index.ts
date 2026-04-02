@@ -1,7 +1,7 @@
-import { MaxrPasswordReset } from './password-reset';
+import { DynLitPasswordReset } from './password-reset';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-password-reset')) {
-        customElements.define('maxr-password-reset', MaxrPasswordReset);
+    if (!customElements.get('dynlit-password-reset')) {
+        customElements.define('dynlit-password-reset', DynLitPasswordReset);
     }
 }

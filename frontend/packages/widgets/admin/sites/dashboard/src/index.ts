@@ -1,10 +1,10 @@
-import { MaxrAdminSiteDashboard } from './admin-site-dashboard';
+import { DynLitAdminSiteDashboard } from './admin-site-dashboard';
 
-export { MaxrAdminSiteDashboard };
+export { DynLitAdminSiteDashboard };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-admin-site-dashboard')) {
-        customElements.define('maxr-admin-site-dashboard', MaxrAdminSiteDashboard);
+    if (!customElements.get('dynlit-admin-site-dashboard')) {
+        customElements.define('dynlit-admin-site-dashboard', DynLitAdminSiteDashboard);
     }
 }
 

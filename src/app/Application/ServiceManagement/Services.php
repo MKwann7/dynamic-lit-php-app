@@ -189,8 +189,8 @@ class Services
     {
         if ($this->jwtPayloadFactory === null) {
             $this->jwtPayloadFactory = new JwtPayloadFactory(
-                issuer: (string)(getenv('JWT_ISSUER') ?: 'maxr-app'),
-                audience: (string)(getenv('JWT_AUDIENCE') ?: 'maxr-app-clients'),
+                issuer: (string)(getenv('JWT_ISSUER') ?: 'dynlit-app'),
+                audience: (string)(getenv('JWT_AUDIENCE') ?: 'dynlit-app-clients'),
                 ttlSeconds: (int)(getenv('JWT_TTL_SECONDS') ?: 3600)
             );
         }

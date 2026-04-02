@@ -18,7 +18,7 @@ export default defineConfig({
             external: [
                 'lit',
                 'lit/decorators.js',
-                '@maxr/shared/runtime-export'
+                '@dynlit/shared/runtime-export'
             ],
             output: {
                 entryFileNames: 'index.js'

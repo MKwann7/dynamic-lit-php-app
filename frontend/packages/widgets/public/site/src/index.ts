@@ -1,7 +1,7 @@
-import {MaxrSite} from "./site";
+import {DynLitSite} from "./site";
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-site')) {
-        customElements.define('maxr-site', MaxrSite);
+    if (!customElements.get('dynlit-site')) {
+        customElements.define('dynlit-site', DynLitSite);
     }
 }

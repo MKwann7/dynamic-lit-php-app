@@ -1,7 +1,7 @@
-import {MaxrCreateAccount} from './create-account';
+import {DynLitCreateAccount} from './create-account';
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-create-account')) {
-        customElements.define('maxr-create-account', MaxrCreateAccount);
+    if (!customElements.get('dynlit-create-account')) {
+        customElements.define('dynlit-create-account', DynLitCreateAccount);
     }
 }

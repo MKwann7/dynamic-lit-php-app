@@ -1,6 +1,6 @@
 import { css, html, PropertyValues, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
 
@@ -42,8 +42,8 @@ type View = 'manage' | 'upload' | 'library';
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-@customElement('maxr-manage-image')
-export class MaxrManageImage extends RuntimeWidgetElement {
+@customElement('dynlit-manage-image')
+export class DynLitManageImage extends RuntimeWidgetElement {
 
     // ── Props ─────────────────────────────────────────────────────────────────
 
@@ -100,7 +100,7 @@ export class MaxrManageImage extends RuntimeWidgetElement {
     // ── Media server URL ──────────────────────────────────────────────────────
 
     private get _mediaUrl(): string {
-        const boot = (window as unknown as { __MAXR_BOOTSTRAP__?: Record<string, unknown> }).__MAXR_BOOTSTRAP__ ?? {};
+        const boot = (window as unknown as { __dynlit_BOOTSTRAP__?: Record<string, unknown> }).__dynlit_BOOTSTRAP__ ?? {};
         const media = boot['media'] as { serverUrl?: string } | undefined;
         return (media?.serverUrl ?? 'http://localhost:3002').replace(/\/$/, '');
     }
@@ -108,52 +108,52 @@ export class MaxrManageImage extends RuntimeWidgetElement {
     // ── Styles ────────────────────────────────────────────────────────────────
 
     static styles = css`
-        .maxr-mi { display: flex; flex-direction: column; width: 100%; height: 100%; background: #fff; }
+        .dynlit-mi { display: flex; flex-direction: column; width: 100%; height: 100%; background: #fff; }
 
         /* Header */
-        .maxr-mi__header {
+        .dynlit-mi__header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 16px 24px 12px; border-bottom: 1px solid #dee2e6; flex-shrink: 0;
         }
-        .maxr-mi__header h4 { margin: 0; font-size: 1.1rem; font-weight: 700; color: #212529; }
-        .maxr-mi__close {
+        .dynlit-mi__header h4 { margin: 0; font-size: 1.1rem; font-weight: 700; color: #212529; }
+        .dynlit-mi__close {
             background: none; border: none; cursor: pointer;
             font-size: 1.3rem; color: #6c757d; line-height: 1; padding: 2px 6px;
         }
-        .maxr-mi__close:hover { color: #212529; }
+        .dynlit-mi__close:hover { color: #212529; }
 
-        /* Body — flex:1 fills the remaining height of .maxr-mi */
-        .maxr-mi__body {
+        /* Body — flex:1 fills the remaining height of .dynlit-mi */
+        .dynlit-mi__body {
             flex: 1; min-height: 0; overflow: hidden;
             display: flex; flex-direction: column;
         }
 
         /* Upload panel (full-width with padding) */
-        .maxr-mi__panel-main {
+        .dynlit-mi__panel-main {
             padding: 20px 24px; flex: 1; box-sizing: border-box; overflow-y: auto;
         }
 
         /* ── Two-panel manage layout ─────────────────────────────────────── */
-        .maxr-mi__manage-layout {
-            /* flex:1 fills .maxr-mi__slide-pane (flex column) — height:100% is unreliable here */
+        .dynlit-mi__manage-layout {
+            /* flex:1 fills .dynlit-mi__slide-pane (flex column) — height:100% is unreliable here */
             display: flex; flex: 1; min-height: 0;
         }
-        .maxr-mi__sidebar {
+        .dynlit-mi__sidebar {
             width: 160px; flex-shrink: 0;
             background: #e9ecef;
             padding: 16px 12px;
             display: flex; flex-direction: column; gap: 8px;
             border-right: 1px solid #dee2e6;
         }
-        .maxr-mi__sidebar .btn {
+        .dynlit-mi__sidebar .btn {
             width: 100%; justify-content: center; text-align: center;
         }
-        .maxr-mi__preview {
+        .dynlit-mi__preview {
             /* flex:1 fills the row; no need for height:100% once the chain is all flex:1 */
             flex: 1; display: flex; align-items: center; justify-content: center;
             padding: 16px; overflow: hidden;
         }
-        .maxr-mi__preview img {
+        .dynlit-mi__preview img {
             max-width: 100%; max-height: 100%; object-fit: contain;
             border-radius: 6px; border: 1px solid #dee2e6;
         }
@@ -164,14 +164,14 @@ export class MaxrManageImage extends RuntimeWidgetElement {
          * 200%-wide slider.  Toggling --library shifts the whole slider left
          * so both panels move in unison — identical to the on-page nav behaviour.
          */
-        .maxr-mi__slider {
+        .dynlit-mi__slider {
             display: flex;
             width: 200%;
-            flex: 1;           /* fills .maxr-mi__body (flex column) */
+            flex: 1;           /* fills .dynlit-mi__body (flex column) */
             transition: transform 0.3s ease-in-out;
             will-change: transform;
         }
-        .maxr-mi__slider--library { transform: translateX(-50%); }
+        .dynlit-mi__slider--library { transform: translateX(-50%); }
 
         /* Each slide-pane = 50% of the 200%-wide slider.
          * Height: NO explicit value — the parent row-flex's align-items:stretch
@@ -179,7 +179,7 @@ export class MaxrManageImage extends RuntimeWidgetElement {
          * (height:100% is unreliable here because slider's height comes from
          * flex:1, not an explicit value, and browsers may not treat that as
          * "definite" for percentage resolution.) */
-        .maxr-mi__slide-pane {
+        .dynlit-mi__slide-pane {
             width: 50%;
             flex-shrink: 0;
             overflow: hidden;
@@ -188,21 +188,21 @@ export class MaxrManageImage extends RuntimeWidgetElement {
         }
 
         /* Library panel (lives inside the second slide-pane) */
-        .maxr-mi__panel-library {
-            /* flex:1 fills .maxr-mi__slide-pane (flex column) */
+        .dynlit-mi__panel-library {
+            /* flex:1 fills .dynlit-mi__slide-pane (flex column) */
             display: flex; flex-direction: column; flex: 1;
             overflow: hidden; background: #fff;
             border-left: 1px solid #dee2e6;
         }
-        .maxr-mi__lib-header {
+        .dynlit-mi__lib-header {
             display: flex; align-items: center; gap: 10px;
             padding: 12px 20px; border-bottom: 1px solid #dee2e6; flex-shrink: 0;
         }
-        .maxr-mi__lib-header span { font-weight: 600; font-size: 0.95rem; }
-        .maxr-mi__lib-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+        .dynlit-mi__lib-header span { font-weight: 600; font-size: 0.95rem; }
+        .dynlit-mi__lib-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
 
         /* Manage placeholder (no image) */
-        .maxr-mi__placeholder {
+        .dynlit-mi__placeholder {
             /* align-self:stretch overrides the parent's align-items:center so the dashed
                border fills the full preview area; flex layout centres the icon + text */
             align-self: stretch; width: 100%;
@@ -210,45 +210,45 @@ export class MaxrManageImage extends RuntimeWidgetElement {
             color: #6c757d; padding: 16px;
             border: 2px dashed #dee2e6; border-radius: 8px; box-sizing: border-box;
         }
-        .maxr-mi__placeholder svg { opacity: 0.35; margin-bottom: 8px; }
-        .maxr-mi__placeholder p { margin: 0; font-size: 0.9rem; }
+        .dynlit-mi__placeholder svg { opacity: 0.35; margin-bottom: 8px; }
+        .dynlit-mi__placeholder p { margin: 0; font-size: 0.9rem; }
 
         /* Upload / drop zone */
-        .maxr-mi__dropzone {
+        .dynlit-mi__dropzone {
             border: 2px dashed #adb5bd; border-radius: 8px; padding: 32px 20px;
             text-align: center; cursor: pointer; transition: border-color 0.15s, background 0.15s;
             background: #f8f9fa;
         }
-        .maxr-mi__dropzone.drag-over { border-color: #0d6efd; background: #e8f0fe; }
-        .maxr-mi__dropzone svg { opacity: 0.5; }
-        .maxr-mi__dropzone p { margin: 8px 0 4px; color: #495057; font-size: 0.9rem; }
-        .maxr-mi__dropzone small { color: #6c757d; font-size: 0.8rem; }
-        .maxr-mi__file-input { display: none; }
+        .dynlit-mi__dropzone.drag-over { border-color: #0d6efd; background: #e8f0fe; }
+        .dynlit-mi__dropzone svg { opacity: 0.5; }
+        .dynlit-mi__dropzone p { margin: 8px 0 4px; color: #495057; font-size: 0.9rem; }
+        .dynlit-mi__dropzone small { color: #6c757d; font-size: 0.8rem; }
+        .dynlit-mi__file-input { display: none; }
 
         /* Cropper — fixed height so CropperJS can measure correctly */
-        .maxr-mi__cropper-wrap {
+        .dynlit-mi__cropper-wrap {
             width: 100%;
             height: 310px;
             overflow: hidden;
         }
-        .maxr-mi__cropper-wrap > img { display: block; max-width: 100%; }
+        .dynlit-mi__cropper-wrap > img { display: block; max-width: 100%; }
 
         /* Library grid */
-        .maxr-mi__lib-grid {
+        .dynlit-mi__lib-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 10px;
         }
-        .maxr-mi__lib-item {
+        .dynlit-mi__lib-item {
             aspect-ratio: 1; border-radius: 6px; overflow: hidden; cursor: pointer;
             border: 2px solid transparent; transition: border-color 0.15s, transform 0.1s;
             background: #f1f3f5; position: relative;
         }
-        .maxr-mi__lib-item:hover { border-color: #0d6efd; transform: scale(1.03); }
-        .maxr-mi__lib-item img { width: 100%; height: 100%; object-fit: cover; }
+        .dynlit-mi__lib-item:hover { border-color: #0d6efd; transform: scale(1.03); }
+        .dynlit-mi__lib-item img { width: 100%; height: 100%; object-fit: cover; }
 
         /* Crop-count corner badge — CSS right-triangle in top-right of each lib item */
-        .maxr-mi__lib-badge {
+        .dynlit-mi__lib-badge {
             position: absolute; top: 0; right: 0;
             width: 0; height: 0;
             border-top: 22px solid #0d6efd;
@@ -256,34 +256,34 @@ export class MaxrManageImage extends RuntimeWidgetElement {
             cursor: pointer; z-index: 1;
             transition: border-top-color 0.15s;
         }
-        .maxr-mi__lib-badge:hover { border-top-color: #0b5ed7; }
-        .maxr-mi__lib-badge-count {
+        .dynlit-mi__lib-badge:hover { border-top-color: #0b5ed7; }
+        .dynlit-mi__lib-badge-count {
             position: absolute; top: 2px; right: 3px;
             color: #fff; font-size: 0.55rem; font-weight: 700;
             line-height: 1; pointer-events: none; z-index: 2;
         }
 
         /* Library crops view — parent banner */
-        .maxr-mi__lib-parent-banner {
+        .dynlit-mi__lib-parent-banner {
             display: flex; align-items: center; gap: 8px;
             padding: 8px 0 12px; border-bottom: 1px solid #dee2e6; margin-bottom: 12px;
         }
-        .maxr-mi__lib-parent-banner img {
+        .dynlit-mi__lib-parent-banner img {
             width: 40px; height: 40px; object-fit: cover;
             border-radius: 4px; border: 1px solid #dee2e6; flex-shrink: 0;
         }
-        .maxr-mi__lib-parent-banner__label {
+        .dynlit-mi__lib-parent-banner__label {
             font-size: 0.65rem; color: #6c757d; text-transform: uppercase; letter-spacing: 0.05em;
         }
-        .maxr-mi__lib-parent-banner__class {
+        .dynlit-mi__lib-parent-banner__class {
             font-size: 0.8rem; font-weight: 600; color: #212529;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
-        .maxr-mi__lib-empty { color: #6c757d; text-align: center; padding: 32px 0; }
+        .dynlit-mi__lib-empty { color: #6c757d; text-align: center; padding: 32px 0; }
 
         /* Footer */
-        .maxr-mi__footer {
+        .dynlit-mi__footer {
             display: flex; justify-content: flex-end; gap: 8px;
             padding: 12px 24px 16px; border-top: 1px solid #dee2e6; flex-shrink: 0;
         }
@@ -301,16 +301,16 @@ export class MaxrManageImage extends RuntimeWidgetElement {
         .btn-sm { padding: 4px 10px; font-size: 0.8rem; }
 
         /* Error */
-        .maxr-mi__error { color: #dc3545; font-size: 0.85rem; margin-top: 8px; }
+        .dynlit-mi__error { color: #dc3545; font-size: 0.85rem; margin-top: 8px; }
 
         /* Loading spinner */
-        .maxr-mi__spinner {
+        .dynlit-mi__spinner {
             display: inline-block; width: 20px; height: 20px;
             border: 2px solid #dee2e6; border-top-color: #0d6efd;
-            border-radius: 50%; animation: maxr-spin 0.7s linear infinite;
+            border-radius: 50%; animation: dynlit-spin 0.7s linear infinite;
         }
-        .maxr-mi__spinner--sm { width: 12px; height: 12px; border-width: 1.5px; }
-        @keyframes maxr-spin { to { transform: rotate(360deg); } }
+        .dynlit-mi__spinner--sm { width: 12px; height: 12px; border-width: 1.5px; }
+        @keyframes dynlit-spin { to { transform: rotate(360deg); } }
     `;
 
     // ── Lifecycle ─────────────────────────────────────────────────────────────
@@ -397,7 +397,7 @@ export class MaxrManageImage extends RuntimeWidgetElement {
         if (p['currentImageUrl']  !== undefined) this.currentImageUrl  = p['currentImageUrl'];
         if (p['currentImageUuid'] !== undefined) this.currentImageUuid = p['currentImageUuid'];
         // Accept both the explicit prop names and the aliases emitted by _save()
-        // in the maxr:image:saved event (original_image_url / original_image_uuid).
+        // in the dynlit:image:saved event (original_image_url / original_image_uuid).
         if (p['parentImageUrl']    !== undefined) this.parentImageUrl   = p['parentImageUrl'];
         else if (p['original_image_url']  !== undefined) this.parentImageUrl   = p['original_image_url'];
         if (p['parentImageUuid']   !== undefined) this.parentImageUuid  = p['parentImageUuid'];
@@ -638,7 +638,7 @@ export class MaxrManageImage extends RuntimeWidgetElement {
     }
 
     private _openFilePicker(): void {
-        this.querySelector<HTMLInputElement>('.maxr-mi__file-input')?.click();
+        this.querySelector<HTMLInputElement>('.dynlit-mi__file-input')?.click();
     }
 
     // ── Library ───────────────────────────────────────────────────────────────
@@ -870,7 +870,7 @@ export class MaxrManageImage extends RuntimeWidgetElement {
     private _updateImage(): void {
         const data = this._pendingImageData
             ?? { image: this.currentImageUrl, image_uuid: this.currentImageUuid };
-        window.dispatchEvent(new CustomEvent('maxr:image:saved', { detail: data, bubbles: true }));
+        window.dispatchEvent(new CustomEvent('dynlit:image:saved', { detail: data, bubbles: true }));
         this.runtime?.closeModal();
     }
 
@@ -878,16 +878,16 @@ export class MaxrManageImage extends RuntimeWidgetElement {
 
     private _renderManageView(): TemplateResult {
         return html`
-            <div class="maxr-mi__manage-layout">
+            <div class="dynlit-mi__manage-layout">
                 <!-- Left sidebar with action buttons -->
-                <div class="maxr-mi__sidebar">
+                <div class="dynlit-mi__sidebar">
                     <button class="btn" @click=${() => this._startUpload()}>Upload New</button>
                     ${this.currentImageUrl ? html`
                         <button class="btn"
                             ?disabled=${this._resolvingEdit}
                             @click=${() => this._startEditCropAsync()}>
                             ${this._resolvingEdit
-                                ? html`<span class="maxr-mi__spinner maxr-mi__spinner--sm"></span>`
+                                ? html`<span class="dynlit-mi__spinner dynlit-mi__spinner--sm"></span>`
                                 : ''}
                             Edit / Crop
                         </button>
@@ -896,11 +896,11 @@ export class MaxrManageImage extends RuntimeWidgetElement {
                 </div>
 
                 <!-- Right image preview -->
-                <div class="maxr-mi__preview">
+                <div class="dynlit-mi__preview">
                     ${this.currentImageUrl
                         ? html`<img src=${this.currentImageUrl} alt="Current image" />`
                         : html`
-                            <div class="maxr-mi__placeholder">
+                            <div class="dynlit-mi__placeholder">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                                     <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
                                     <path d="m21 15-5-5L5 21"/>
@@ -917,20 +917,20 @@ export class MaxrManageImage extends RuntimeWidgetElement {
         // Image loaded — show the cropper only.
         if (this._src) {
             return html`
-                <div class="maxr-mi__cropper-wrap">
+                <div class="dynlit-mi__cropper-wrap">
                     <img id="cropper-img"
                          src=${this._src}
                          crossorigin="anonymous"
                          alt="Image to crop" />
                 </div>
-                ${this._error ? html`<span class="maxr-mi__error">${this._error}</span>` : ''}
+                ${this._error ? html`<span class="dynlit-mi__error">${this._error}</span>` : ''}
             `;
         }
 
         // No image yet — show the drop zone.
         return html`
             <div
-                class="maxr-mi__dropzone ${this._dragOver ? 'drag-over' : ''}"
+                class="dynlit-mi__dropzone ${this._dragOver ? 'drag-over' : ''}"
                 @click=${this._openFilePicker}
                 @dragover=${this._onDragOver}
                 @dragleave=${this._onDragLeave}
@@ -943,9 +943,9 @@ export class MaxrManageImage extends RuntimeWidgetElement {
                 <p>Drag & drop, paste, or <u>click to browse</u></p>
                 <small>JPG, PNG, GIF, WebP, SVG — max 10 MB</small>
             </div>
-            <input class="maxr-mi__file-input" type="file" accept="image/*"
+            <input class="dynlit-mi__file-input" type="file" accept="image/*"
                    @change=${this._onFileChange} />
-            ${this._error ? html`<p class="maxr-mi__error">${this._error}</p>` : ''}
+            ${this._error ? html`<p class="dynlit-mi__error">${this._error}</p>` : ''}
         `;
     }
 
@@ -953,7 +953,7 @@ export class MaxrManageImage extends RuntimeWidgetElement {
         const inCrops = this._libraryView === 'crops' && this._libraryCropsParent !== null;
 
         return html`
-            <div class="maxr-mi__lib-header">
+            <div class="dynlit-mi__lib-header">
                 ${inCrops
                     ? html`<button class="btn btn-sm" @click=${this._backToLibraryGrid}>← Back</button>`
                     : html`<button class="btn btn-sm" @click=${() => this._switchView('manage')}>← Back</button>`
@@ -961,11 +961,11 @@ export class MaxrManageImage extends RuntimeWidgetElement {
                 <span>${inCrops ? 'Cropped Image Versions' : 'Your Images'}</span>
                 <button class="btn btn-sm" style="margin-left:auto" @click=${this._loadLibrary}>↺ Refresh</button>
             </div>
-            <div class="maxr-mi__lib-body">
+            <div class="dynlit-mi__lib-body">
                 ${this._libraryLoading
-                    ? html`<div style="text-align:center;padding:32px"><span class="maxr-mi__spinner"></span></div>`
+                    ? html`<div style="text-align:center;padding:32px"><span class="dynlit-mi__spinner"></span></div>`
                     : this._libraryError
-                        ? html`<p class="maxr-mi__error">${this._libraryError}</p>`
+                        ? html`<p class="dynlit-mi__error">${this._libraryError}</p>`
                         : inCrops
                             ? this._renderLibraryCropsGrid(this._libraryCropsParent!)
                             : this._renderLibraryRootGrid()}
@@ -975,20 +975,20 @@ export class MaxrManageImage extends RuntimeWidgetElement {
 
     private _renderLibraryRootGrid(): TemplateResult {
         if (this._libraryImages.length === 0) {
-            return html`<p class="maxr-mi__lib-empty">No images uploaded yet.</p>`;
+            return html`<p class="dynlit-mi__lib-empty">No images uploaded yet.</p>`;
         }
         return html`
-            <div class="maxr-mi__lib-grid">
+            <div class="dynlit-mi__lib-grid">
                 ${this._libraryImages.map(img => html`
-                    <div class="maxr-mi__lib-item" @click=${() => this._selectLibraryImage(img)}>
+                    <div class="dynlit-mi__lib-item" @click=${() => this._selectLibraryImage(img)}>
                         <img src="${this._mediaUrl}${img.thumb}" alt="${img.image_class}" loading="lazy" />
                         ${img.crops && img.crops.length > 0 ? html`
                             <div
-                                class="maxr-mi__lib-badge"
+                                class="dynlit-mi__lib-badge"
                                 title="${img.crops.length} cropped version${img.crops.length === 1 ? '' : 's'} — click to view"
                                 @click=${(e: Event) => this._openLibraryCrops(e, img)}
                             ></div>
-                            <span class="maxr-mi__lib-badge-count">${img.crops.length}</span>
+                            <span class="dynlit-mi__lib-badge-count">${img.crops.length}</span>
                         ` : ''}
                     </div>
                 `)}
@@ -1000,19 +1000,19 @@ export class MaxrManageImage extends RuntimeWidgetElement {
         const crops = parent.crops ?? [];
         return html`
             <!-- Parent image context banner -->
-            <div class="maxr-mi__lib-parent-banner">
+            <div class="dynlit-mi__lib-parent-banner">
                 <img src="${this._mediaUrl}${parent.thumb}" alt="${parent.image_class}" />
                 <div>
-                    <div class="maxr-mi__lib-parent-banner__label">Original</div>
-                    <div class="maxr-mi__lib-parent-banner__class">${parent.image_class}</div>
+                    <div class="dynlit-mi__lib-parent-banner__label">Original</div>
+                    <div class="dynlit-mi__lib-parent-banner__class">${parent.image_class}</div>
                 </div>
             </div>
             ${crops.length === 0
-                ? html`<p class="maxr-mi__lib-empty">No cropped versions yet.</p>`
+                ? html`<p class="dynlit-mi__lib-empty">No cropped versions yet.</p>`
                 : html`
-                    <div class="maxr-mi__lib-grid">
+                    <div class="dynlit-mi__lib-grid">
                         ${crops.map(crop => html`
-                            <div class="maxr-mi__lib-item" @click=${() => this._selectLibraryImage(crop)}>
+                            <div class="dynlit-mi__lib-item" @click=${() => this._selectLibraryImage(crop)}>
                                 <img src="${this._mediaUrl}${crop.thumb}" alt="${crop.image_class}" loading="lazy" />
                             </div>
                         `)}
@@ -1028,23 +1028,23 @@ export class MaxrManageImage extends RuntimeWidgetElement {
         const isLibrary = this._view === 'library';
 
         return html`
-            <div class="maxr-mi">
-                <div class="maxr-mi__header">
+            <div class="dynlit-mi">
+                <div class="dynlit-mi__header">
                     <h4>${isUpload ? 'Upload Image' : 'Manage Image'}</h4>
-                    <button class="maxr-mi__close" @click=${() => this.runtime?.closeModal()}>✕</button>
+                    <button class="dynlit-mi__close" @click=${() => this.runtime?.closeModal()}>✕</button>
                 </div>
 
-                <div class="maxr-mi__body">
+                <div class="dynlit-mi__body">
                     ${isUpload
-                        ? html`<div class="maxr-mi__panel-main">${this._renderUploadView()}</div>`
+                        ? html`<div class="dynlit-mi__panel-main">${this._renderUploadView()}</div>`
                         : html`
                             <!-- Slider: manage (left) + library (right) move in unison -->
-                            <div class="maxr-mi__slider ${isLibrary ? 'maxr-mi__slider--library' : ''}">
-                                <div class="maxr-mi__slide-pane">
+                            <div class="dynlit-mi__slider ${isLibrary ? 'dynlit-mi__slider--library' : ''}">
+                                <div class="dynlit-mi__slide-pane">
                                     ${this._renderManageView()}
                                 </div>
-                                <div class="maxr-mi__slide-pane">
-                                    <div class="maxr-mi__panel-library">
+                                <div class="dynlit-mi__slide-pane">
+                                    <div class="dynlit-mi__panel-library">
                                         ${this._renderLibraryPanel()}
                                     </div>
                                 </div>
@@ -1053,7 +1053,7 @@ export class MaxrManageImage extends RuntimeWidgetElement {
                     }
                 </div>
 
-                <div class="maxr-mi__footer">
+                <div class="dynlit-mi__footer">
                     ${isUpload ? html`
                         <button class="btn" @click=${() => this._switchView('manage')}>← Back</button>
                         <button
@@ -1062,7 +1062,7 @@ export class MaxrManageImage extends RuntimeWidgetElement {
                             @click=${this._save}
                         >
                             ${this._saving
-                                ? html`<span class="maxr-mi__spinner"></span> Saving…`
+                                ? html`<span class="dynlit-mi__spinner"></span> Saving…`
                                 : 'Crop & Save'}
                         </button>
                     ` : html`

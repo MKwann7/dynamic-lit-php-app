@@ -72,7 +72,7 @@ function normalizeRoute(value: string): string {
 }
 
 function generateElName(tag: string): string {
-    return `maxr-${normalizeTag(tag)}`;
+    return `dynlit-${normalizeTag(tag)}`;
 }
 
 function assert(condition: unknown, message: string): asserts condition {
@@ -666,7 +666,7 @@ async function main(): Promise<void> {
         port: Number(process.env.DB_PORT_EXTERNAL ?? 3306),
         user: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE ?? 'maxr_components',
+        database: process.env.DB_DATABASE ?? 'dynlit_components',
         multipleStatements: false,
         connectTimeout: 5_000,
     };

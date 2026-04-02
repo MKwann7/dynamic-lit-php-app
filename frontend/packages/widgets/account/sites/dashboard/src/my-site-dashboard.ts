@@ -1,6 +1,6 @@
 import { css, html, PropertyValues, TemplateResult } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
 // ── IDs of the three anchored-modal components ───────────────────────────────
 const PROFILE_MANAGE_ID = 'cbd0cab1-1906-49b5-bbe3-ffdcb7e616d2';
@@ -32,8 +32,8 @@ interface SiteUser {
     status:       string | null;
 }
 
-@customElement('maxr-my-site-dashboard')
-export class MaxrSiteDashboard extends RuntimeWidgetElement {
+@customElement('dynlit-my-site-dashboard')
+export class DynLitSiteDashboard extends RuntimeWidgetElement {
 
     static styles = css`
         :host { display: block; background: #f0f2f5; min-height: 100%; }
@@ -358,7 +358,7 @@ export class MaxrSiteDashboard extends RuntimeWidgetElement {
 
     override connectedCallback() {
         super.connectedCallback();
-        window.addEventListener('maxr:site:updated', this._onSiteUpdated);
+        window.addEventListener('dynlit:site:updated', this._onSiteUpdated);
         // routingContext may already be set (component loaded via list navigation),
         // or it may arrive shortly after via the updated() hook (direct URL load).
         this.siteUuid = this.getRouteParam('uuid') ?? this.extractUuidFromUrl();
@@ -373,7 +373,7 @@ export class MaxrSiteDashboard extends RuntimeWidgetElement {
 
     override disconnectedCallback(): void {
         super.disconnectedCallback();
-        window.removeEventListener('maxr:site:updated', this._onSiteUpdated);
+        window.removeEventListener('dynlit:site:updated', this._onSiteUpdated);
     }
 
     /**

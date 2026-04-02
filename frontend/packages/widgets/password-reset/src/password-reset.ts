@@ -1,9 +1,9 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { RuntimeWidgetElement } from '@maxr/shared';
+import { RuntimeWidgetElement } from '@dynlit/shared';
 
-@customElement('maxr-password-reset')
-export class MaxrPasswordReset extends RuntimeWidgetElement {
+@customElement('dynlit-password-reset')
+export class DynLitPasswordReset extends RuntimeWidgetElement {
     @property({ type: String })
     title = 'Password Reset';
 

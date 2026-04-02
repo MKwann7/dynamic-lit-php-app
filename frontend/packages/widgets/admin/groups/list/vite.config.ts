@@ -13,7 +13,7 @@ export default defineConfig({
         outDir: path.resolve(__dirname, `../../../../../dist/widgets/admin/groups/list/${version}`),
         emptyOutDir: true,
         rollupOptions: {
-            external: ['lit', 'lit/decorators.js', '@maxr/shared/runtime-export'],
+            external: ['lit', 'lit/decorators.js', '@dynlit/shared/runtime-export'],
         },
     },
 });

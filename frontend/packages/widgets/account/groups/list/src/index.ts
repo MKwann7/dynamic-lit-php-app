@@ -1,9 +1,9 @@
-import { MaxrMyGroupsList } from './my-groups-list';
+import { DynLitMyGroupsList } from './my-groups-list';
 
-export { MaxrMyGroupsList };
+export { DynLitMyGroupsList };
 
 export async function defineWidget(): Promise<void> {
-    if (!customElements.get('maxr-my-groups-list')) {
-        customElements.define('maxr-my-groups-list', MaxrMyGroupsList);
+    if (!customElements.get('dynlit-my-groups-list')) {
+        customElements.define('dynlit-my-groups-list', DynLitMyGroupsList);
     }
 }
