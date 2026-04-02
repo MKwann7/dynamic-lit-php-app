@@ -18,6 +18,7 @@ export default defineConfig({
             external: [
                 'lit',
                 'lit/decorators.js',
+                '@dynlit/shared',
                 '@dynlit/shared/runtime-export'
             ],
             output: {

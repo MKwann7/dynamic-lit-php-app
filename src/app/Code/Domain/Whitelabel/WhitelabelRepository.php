@@ -27,7 +27,7 @@ final class WhitelabelRepository extends BaseRepository
 
     protected function connectionName(): string
     {
-        return 'whitelabel';
+        return 'identity';
     }
 
     private function buildSelectClause(): string
