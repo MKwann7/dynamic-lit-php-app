@@ -1,0 +1,27 @@
+{
+  "id": "2d2dc08d-25a4-43ae-9e7b-afae92788222",
+  "name": "Maxr My Groups",
+  "tag": "my-groups-list",
+  "uri": "/my-groups-list",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/groups/list/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "light",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [
+    {
+      "id": "9bf9e360-1a53-402d-a7ea-612b947ca293",
+      "type": "slot",
+      "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0",
+      "path": "{uuid}",
+      "sortOrder": 0
+    }
+  ],
+  "isPublic": false
+}

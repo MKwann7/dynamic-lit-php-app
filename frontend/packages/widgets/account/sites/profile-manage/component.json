@@ -1,0 +1,19 @@
+{
+  "id": "cbd0cab1-1906-49b5-bbe3-ffdcb7e616d2",
+  "name": "Maxr Site Profile Manage",
+  "tag": "site-profile-manage",
+  "uri": "/site-profile-manage",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/sites/profile-manage/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

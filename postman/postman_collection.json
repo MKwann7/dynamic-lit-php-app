@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "763353c3-70bd-4c90-b432-cac4a9885cb9",
+		"name": "Micah's Dev Stuff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "450915"
+	},
+	"item": [
+		{
+			"name": "AWS",
+			"item": [
+				{
+					"name": "UploadToS3AsIntelligentTier",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EpubFactoryWorker",
+			"item": [
+				{
+					"name": "GlossaryXhtmlUpdate",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

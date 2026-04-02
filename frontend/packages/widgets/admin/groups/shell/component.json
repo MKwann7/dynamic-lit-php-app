@@ -1,0 +1,21 @@
+{
+  "id": "aeae410a-eefd-445d-8b14-801cbc9b89e4",
+  "name": "Maxr Admin Groups Shell",
+  "tag": "admin-groups-shell",
+  "uri": "/administrator/groups",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/groups/shell/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": { "define": "defineWidget" },
+  "breadcrumbLabel": "Groups",
+  "dependencies": [
+    { "id": "62b74c00-d006-4416-bb79-8d9662d42ec5", "type": "parent-slot", "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0", "path": "/", "required": true, "sortOrder": 10 },
+    { "id": "e0908bdf-231d-413b-bd89-60f81184c9e1", "type": "parent-slot", "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0", "path": "{uuid}", "required": true, "sortOrder": 15 }
+  ],
+  "isPublic": false
+}

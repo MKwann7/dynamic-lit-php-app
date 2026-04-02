@@ -1,0 +1,18 @@
+{
+  "name": "@maxr/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build && vite build --config vite.vendor.config.ts"
+  },
+  "dependencies": {
+    "lit": "^3.2.1"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./runtime-widget": "./src/runtime-widget.ts",
+    "./types": "./src/types.ts",
+    "./lists": "./src/index.ts"
+  }
+}

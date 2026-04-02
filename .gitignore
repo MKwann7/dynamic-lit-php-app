@@ -1,0 +1,7 @@
+/vendor/
+/.env
+/tests/.phpunit.result.cache
+/bin/
+/docker/database/mysql-data/
+/frontend/dist/
+/frontend/node_modules/

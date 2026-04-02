@@ -1,0 +1,19 @@
+{
+    "id": "a864554e-09b3-4008-a9b3-dac9632a2c45",
+    "name": "Create Account",
+    "tag": "create-account",
+    "uri": "create-account",
+    "version": "1.0.0",
+    "framework": "lit",
+    "entry": "/assets/widgets/create-account/1.0.0/index.js",
+    "cssPath": null,
+    "integrity": null,
+    "renderMode": "light",
+    "themeAware": true,
+    "exposeParts": [],
+    "exports": {
+        "define": "defineWidget"
+    },
+    "dependencies": [],
+    "isPublic": false
+}

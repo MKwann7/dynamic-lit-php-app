@@ -1,0 +1,20 @@
+{
+  "id": "2f210e3b-d4b3-4fc3-ba00-577e7745be96",
+  "name": "Maxr Admin Sites List",
+  "tag": "admin-sites-list",
+  "uri": "/admin-sites-list",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/sites/list/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "light",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}
+

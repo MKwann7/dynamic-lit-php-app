@@ -1,0 +1,27 @@
+{
+  "id": "0855e48d-7abd-488a-b4e9-4539771927fb",
+  "name": "Maxr My Personas",
+  "tag": "my-personas-list",
+  "uri": "/my-personas-list",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/personas/list/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "light",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [
+    {
+      "id": "aa027e48-80e2-48ed-8027-594d703f005e",
+      "type": "slot",
+      "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0",
+      "path": "{uuid}",
+      "sortOrder": 0
+    }
+  ],
+  "isPublic": false
+}

@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "paths": {
+      "@maxr/shared": ["../shared/src/index.ts"],
+      "@maxr/shared/*": ["../shared/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}
+

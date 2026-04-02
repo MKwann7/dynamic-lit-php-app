@@ -1,0 +1,19 @@
+{
+  "id": "9acf0ea8-a2ab-4cf8-9238-70e1db06acac",
+  "name": "Maxr Manage Image",
+  "tag": "manage-image",
+  "uri": "/manage-image",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/managers/media/images/1.0.0/index.js",
+  "cssPath": "/assets/widgets/managers/media/images/1.0.0/style.css",
+  "integrity": null,
+  "renderMode": "light",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

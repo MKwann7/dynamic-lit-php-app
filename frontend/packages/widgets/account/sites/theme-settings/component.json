@@ -1,0 +1,19 @@
+{
+  "id": "44f8672a-7897-4c74-a120-e2d6908ef5ea",
+  "name": "Maxr Site Theme Settings",
+  "tag": "site-theme-settings",
+  "uri": "/site-theme-settings",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/sites/theme-settings/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

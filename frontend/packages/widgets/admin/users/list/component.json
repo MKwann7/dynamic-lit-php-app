@@ -1,0 +1,19 @@
+{
+  "id": "bc11597b-8965-485a-b1e9-bc376181d8b5",
+  "name": "Maxr Users List",
+  "tag": "users-list",
+  "uri": "/users-list",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/users/list/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "21ffc367-a1e9-4b92-a487-d13b8e283059",
+  "name": "EZcard Nav",
+  "tag": "ezcard-nav",
+  "uri": null,
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/templates/ezcard/nav/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "light",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

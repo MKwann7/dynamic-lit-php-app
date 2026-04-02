@@ -1,0 +1,28 @@
+{
+  "id": "f38419fd-e9a9-4b59-9c49-396cac867a7f",
+  "name": "Maxr My Sites",
+  "tag": "my-sites-list",
+  "uri": "/my-sites-list",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/sites/list/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "light",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "breadcrumbLabel": "Sites",
+  "dependencies": [
+    {
+      "id": "5f87e9f7-c5ed-40ab-abc1-944a8733a3c4",
+      "type": "slot",
+      "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0",
+      "path": "{uuid}",
+      "sortOrder": 0
+    }
+  ],
+  "isPublic": false
+}

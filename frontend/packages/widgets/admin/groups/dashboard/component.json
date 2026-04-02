@@ -1,0 +1,17 @@
+{
+  "id": "e0908bdf-231d-413b-bd89-60f81184c9e1",
+  "name": "Maxr Admin Group Dashboard",
+  "tag": "admin-group-dashboard",
+  "uri": "/admin-group-dashboard",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/groups/dashboard/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": { "define": "defineWidget" },
+  "dependencies": [],
+  "isPublic": false
+}

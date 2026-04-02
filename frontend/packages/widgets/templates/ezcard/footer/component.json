@@ -1,0 +1,19 @@
+{
+  "id": "cae954dc-4b9a-41fc-96b1-46562b5f9228",
+  "name": "EZcard Footer",
+  "tag": "ezcard-footer",
+  "uri": null,
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/templates/ezcard/footer/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "light",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

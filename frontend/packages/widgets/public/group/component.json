@@ -1,0 +1,20 @@
+{
+    "id": "9e6fbbd4-f7f0-4fa7-b0a7-4ef5d2f4f1c9",
+    "name": "Groups App",
+    "tag": "group",
+    "uri": "groups",
+    "version": "1.0.0",
+    "framework": "lit",
+    "entry": "/assets/widgets/public/group/1.0.0/index.js",
+    "cssPath": null,
+    "integrity": null,
+    "renderMode": "light",
+    "themeAware": true,
+    "exposeParts": [],
+    "exports": {
+        "define": "defineWidget"
+    },
+    "dependencies": [
+    ],
+    "isPublic": false
+}

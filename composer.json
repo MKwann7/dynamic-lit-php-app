@@ -1,0 +1,75 @@
+{
+  "name": "php/dyn-lit-docker",
+  "description": "Micah's test code for Dynamic Lit stuff.",
+  "keywords": [
+    "test",
+    "epub",
+    "worker"
+  ],
+  "license": "proprietary",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Micah Zak",
+      "email": "micah@zakgraphix.com",
+      "homepage": "https://github.com/MKwann7"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Application\\": "src/app/Application/",
+      "Code\\": "src/app/Code/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "UnitTests\\": "tests/UnitTests"
+    }
+  },
+  "require": {
+    "php": ">=8.3",
+    "monolog/monolog": "^1.22",
+    "psr/log": "^1.0",
+    "guzzlehttp/guzzle": "^7.5",
+    "nelexa/zip": "^4.0.2",
+    "firebase/php-jwt": "^7.0",
+    "symfony/routing": "^7.1.4",
+    "symfony/http-foundation": "^7.1",
+    "twig/twig": "^3.19",
+    "skyzyx/mimetypes": "^1.1",
+    "seld/jsonlint": "^1.6",
+    "ext-libxml": "*",
+    "ext-zip": "*",
+    "ext-dom": "*",
+    "ext-simplexml": "*",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-exif": "*",
+    "guzzlehttp/promises": "^1.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0",
+    "friendsofphp/php-cs-fixer": "^2.0",
+    "squizlabs/php_codesniffer": "^2.7",
+    "phpmd/phpmd": "^2.4",
+    "pdepend/pdepend": "^2.5",
+    "phploc/phploc": "^7.0",
+    "sebastian/phpcpd": "^6.0",
+    "guzzlehttp/psr7": "^1.9.1 || ^2.4.5",
+    "wapmorgan/php-code-analyzer": "dev-master",
+    "roave/security-advisories": "dev-latest"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://repo.packagist.org"
+    }
+  ],
+  "config": {
+    "bin-dir": "bin/",
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}

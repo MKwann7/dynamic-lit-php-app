@@ -1,0 +1,20 @@
+{
+  "id": "7b3f9c2e-1a4d-4e8b-a5f6-9d2c1b8e3a7f",
+  "name": "User Profile Manage",
+  "tag": "user-profile-manage",
+  "uri": "/user-profile-manage",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/users/profile-manage/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}
+

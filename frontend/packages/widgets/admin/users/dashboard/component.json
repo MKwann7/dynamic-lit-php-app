@@ -1,0 +1,41 @@
+{
+  "id": "cd2e54fc-8e07-4f9a-8f9c-24f9c929976c",
+  "name": "Maxr User Dashboard",
+  "tag": "user-dashboard",
+  "uri": "/user-dashboard",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/users/dashboard/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [
+    {
+      "id": "0855e48d-7abd-488a-b4e9-4539771927fb",
+      "type": "slot",
+      "mount_id": "ud-personas-section",
+      "path": "personas",
+      "sortOrder": 0
+    },
+    {
+      "id": "f38419fd-e9a9-4b59-9c49-396cac867a7f",
+      "type": "slot",
+      "mount_id": "ud-sites-section",
+      "path": "sites",
+      "sortOrder": 1
+    },
+    {
+      "id": "2d2dc08d-25a4-43ae-9e7b-afae92788222",
+      "type": "slot",
+      "mount_id": "ud-groups-section",
+      "path": "groups",
+      "sortOrder": 2
+    }
+  ],
+  "isPublic": false
+}

@@ -1,0 +1,20 @@
+{
+    "id": "9e4bcfcb-a458-4bda-8c1c-671173b79df8",
+    "name": "Sites App",
+    "tag": "site",
+    "uri": "sites",
+    "version": "1.0.0",
+    "framework": "lit",
+    "entry": "/assets/widgets/public/site/1.0.0/index.js",
+    "cssPath": null,
+    "integrity": null,
+    "renderMode": "light",
+    "themeAware": true,
+    "exposeParts": [],
+    "exports": {
+        "define": "defineWidget"
+    },
+    "dependencies": [
+    ],
+    "isPublic": false
+}

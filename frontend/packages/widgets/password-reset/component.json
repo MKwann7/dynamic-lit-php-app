@@ -1,0 +1,20 @@
+{
+    "id": "65c1ef41-7b47-4153-8fe1-e4a14b39b3b1",
+    "name": "Password Reset",
+    "tag": "password-reset",
+    "uri": "password-reset",
+    "version": "1.0.0",
+    "framework": "lit",
+    "entry": "/assets/widgets/password-reset/1.0.0/index.js",
+    "cssPath": null,
+    "integrity": null,
+    "renderMode": "light",
+    "themeAware": true,
+    "exposeParts": [],
+    "exports": {
+        "define": "defineWidget"
+    },
+    "dependencies": [
+    ],
+    "isPublic": false
+}

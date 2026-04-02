@@ -1,0 +1,8 @@
+{
+  "extends": "../../../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist", "rootDir": "src", "module": "ESNext", "target": "ES2022",
+    "moduleResolution": "Bundler", "experimentalDecorators": true, "useDefineForClassFields": false
+  },
+  "include": ["src/**/*"]
+}

@@ -1,0 +1,43 @@
+{
+    "id": "fdb6d0fe-2b7e-4709-a0f7-2ec2d6d8ea2b",
+    "name": "Admin App",
+    "tag": "admin-shell",
+    "uri": "administrator",
+    "version": "1.0.0",
+    "framework": "lit",
+    "entry": "/assets/widgets/admin/shell/1.0.0/index.js",
+    "cssPath": null,
+    "integrity": null,
+    "renderMode": "light",
+    "themeAware": true,
+    "exposeParts": [],
+    "exports": {
+        "define": "defineWidget"
+    },
+    "dependencies": [
+      {
+        "id": "a34b3a38-a59d-4b35-befd-b296e435111a",
+        "required": true,
+        "sortOrder": 10
+      },
+      {
+        "id": "21ffc367-a1e9-4b92-a487-d13b8e283059",
+        "required": true,
+        "sortOrder": 15
+      },
+      {
+        "id": "cae954dc-4b9a-41fc-96b1-46562b5f9228",
+        "required": true,
+        "sortOrder": 20
+      },
+      {
+        "id": "c6a9e0c8-0407-4a8a-b726-6024a9026288",
+        "type": "slot",
+        "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0",
+        "path": "/",
+        "required": true,
+        "sortOrder": 25
+      }
+    ],
+    "isPublic": false
+}

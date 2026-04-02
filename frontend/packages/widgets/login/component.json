@@ -1,0 +1,20 @@
+{
+    "id": "122160fe-9981-4d3d-8218-fabdd279713a",
+    "name": "Account Login",
+    "tag": "login",
+    "uri": "login",
+    "version": "1.0.0",
+    "framework": "lit",
+    "entry": "/assets/widgets/login/1.0.0/index.js",
+    "cssPath": null,
+    "integrity": null,
+    "renderMode": "light",
+    "themeAware": true,
+    "exposeParts": [],
+    "exports": {
+        "define": "defineWidget"
+    },
+    "dependencies": [
+    ],
+    "isPublic": false
+}

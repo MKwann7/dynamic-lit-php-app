@@ -1,0 +1,23 @@
+{
+  "id": "ccd31d3c-9a2e-4fb0-96ac-0c764d033e0c",
+  "name": "Maxr Users Shell",
+  "tag": "users-shell",
+  "uri": "/administrator/users",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/users/shell/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "breadcrumbLabel": "Users",
+  "dependencies": [
+    { "id": "bc11597b-8965-485a-b1e9-bc376181d8b5", "type": "parent-slot", "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0", "path": "/", "required": true, "sortOrder": 10 },
+    { "id": "cd2e54fc-8e07-4f9a-8f9c-24f9c929976c", "type": "parent-slot", "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0", "path": "{uuid}", "required": true, "sortOrder": 15 }
+  ],
+  "isPublic": false
+}

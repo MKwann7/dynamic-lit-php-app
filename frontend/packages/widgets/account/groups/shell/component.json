@@ -1,0 +1,37 @@
+{
+  "id": "d5531037-f587-42e9-baf1-f409b452a7d0",
+  "name": "Maxr Group Shell",
+  "tag": "my-group-shell",
+  "uri": "/account/groups",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/groups/shell/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "breadcrumbLabel": "My Groups",
+  "dependencies": [
+    {
+      "id": "2d2dc08d-25a4-43ae-9e7b-afae92788222",
+      "type": "parent-slot",
+      "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0",
+      "path": "/",
+      "required": true,
+      "sortOrder": 10
+    },
+    {
+      "id": "9bf9e360-1a53-402d-a7ea-612b947ca293",
+      "type": "parent-slot",
+      "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0",
+      "path": "{uuid}",
+      "required": true,
+      "sortOrder": 15
+    }
+  ],
+  "isPublic": false
+}

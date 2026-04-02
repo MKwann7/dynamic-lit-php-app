@@ -1,0 +1,15 @@
+services:
+  app:
+    hostname: maxr-app.docker
+    container_name: maxr-app
+    build:
+      context: ./../
+      dockerfile: ./docker/Dockerfile
+    env_file: ./env/app-nonprod.env
+    ports:
+      - 3000:8080
+      - 4000:4443
+    volumes:
+      - "./../src:/app/src"
+      - "./../vendor:/app/vendor"
+      - "./../tests:/app/tests"

@@ -1,0 +1,15 @@
+{
+  "name": "@maxr/create-account",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "watch": "vite build --watch",
+    "dev": "vite build --watch"
+  },
+  "dependencies": {
+    "lit": "^3.2.1",
+    "@maxr/shared": "1.0.0"
+  }
+}

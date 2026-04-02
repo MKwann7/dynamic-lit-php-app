@@ -1,0 +1,37 @@
+{
+  "id": "22858f3d-af0b-43bc-9b82-1d5c4b6cfe86",
+  "name": "Maxr Site Shell",
+  "tag": "my-site-shell",
+  "uri": "/account/sites",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/sites/shell/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "breadcrumbLabel": "My Sites",
+  "dependencies": [
+    {
+      "id": "f38419fd-e9a9-4b59-9c49-396cac867a7f",
+      "type": "parent-slot",
+      "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0",
+      "path": "/",
+      "required": true,
+      "sortOrder": 10
+    },
+    {
+      "id": "5f87e9f7-c5ed-40ab-abc1-944a8733a3c4",
+      "type": "parent-slot",
+      "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0",
+      "path": "{uuid}",
+      "required": true,
+      "sortOrder": 15
+    }
+  ],
+  "isPublic": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "54b49430-e9f8-4144-b45b-adf2b377af9a",
+  "name": "Maxr Admin Sites Shell",
+  "tag": "admin-sites-shell",
+  "uri": "/administrator/sites",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/sites/shell/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": { "define": "defineWidget" },
+  "breadcrumbLabel": "Sites",
+  "dependencies": [
+    { "id": "2f210e3b-d4b3-4fc3-ba00-577e7745be96", "type": "parent-slot", "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0", "path": "/", "required": true, "sortOrder": 10 },
+    { "id": "259955dc-6deb-419b-a00f-e1da00734638", "type": "parent-slot", "mount_id": "f559b17e-fed9-4484-adb6-8632ebf647c0", "path": "{uuid}", "required": true, "sortOrder": 15 }
+  ],
+  "isPublic": false
+}

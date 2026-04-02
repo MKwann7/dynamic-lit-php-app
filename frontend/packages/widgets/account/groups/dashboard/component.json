@@ -1,0 +1,19 @@
+{
+  "id": "9bf9e360-1a53-402d-a7ea-612b947ca293",
+  "name": "Maxr Group Dashboard",
+  "tag": "my-group-dashboard",
+  "uri": "/dashboard",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/groups/dashboard/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

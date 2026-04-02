@@ -1,0 +1,35 @@
+{
+  "name": "maxr-frontend-cdn",
+  "private": true,
+  "workspaces": [
+    "packages/runtime",
+    "packages/shared",
+    "packages/widgets/*",
+    "packages/widgets/*/*",
+    "packages/widgets/*/*/*",
+    "packages/widgets/*/*/*/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:component": "npm run build --workspace",
+    "watch": "npm run watch --workspaces --if-present",
+    "clean": "rimraf dist",
+    "create:component": "tsx ./scripts/create-component.ts",
+    "build:registry": "tsx ./scripts/build-component-registry.ts",
+    "sync:registry": "tsx ./scripts/sync-component-registry.ts",
+    "deploy:components": "npm run sync:registry",
+    "full-deploy:components": "npm run build && npm run build:registry && npm run sync:registry"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "lit": "^3.2.1",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.20.0"
+  }
+}

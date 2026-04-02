@@ -1,0 +1,19 @@
+{
+  "id": "e6cde524-13f5-4db2-86cf-d0304c07f420",
+  "name": "Maxr Site User Manage",
+  "tag": "site-user-manage",
+  "uri": "/site-user-manage",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/sites/user-manage/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

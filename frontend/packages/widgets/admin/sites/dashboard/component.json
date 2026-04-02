@@ -1,0 +1,20 @@
+{
+  "id": "259955dc-6deb-419b-a00f-e1da00734638",
+  "name": "Maxr Admin Site Dashboard",
+  "tag": "admin-site-dashboard",
+  "uri": "/admin-site-dashboard",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/admin/sites/dashboard/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}
+

@@ -1,0 +1,19 @@
+{
+  "id": "c6a9e0c8-0407-4a8a-b726-6024a9026288",
+  "name": "Maxr Acount Dashboard",
+  "tag": "account-dashboard",
+  "uri": "/dashboard",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/dashboard/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

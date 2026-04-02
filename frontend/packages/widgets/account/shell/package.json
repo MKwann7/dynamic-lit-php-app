@@ -1,0 +1,19 @@
+{
+  "name": "@maxr/account-shell",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "watch": "vite build --watch",
+    "dev": "vite build --watch"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./account": "./src/account.ts"
+  },
+  "dependencies": {
+    "lit": "^3.2.1",
+    "@maxr/shared": "1.0.0"
+  }
+}

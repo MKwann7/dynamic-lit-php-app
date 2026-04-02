@@ -1,0 +1,19 @@
+{
+  "id": "a34b3a38-a59d-4b35-befd-b296e435111a",
+  "name": "EZcard Header",
+  "tag": "ezcard-header",
+  "uri": null,
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/templates/ezcard/header/1.0.0/index.js",
+  "cssPath": null,
+  "integrity": null,
+  "renderMode": "light",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

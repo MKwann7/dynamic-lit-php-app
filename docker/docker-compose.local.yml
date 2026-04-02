@@ -1,0 +1,87 @@
+services:
+  app:
+    hostname: maxr-app.docker
+    container_name: maxr-app
+    build:
+      context: ./../
+      dockerfile: ./docker/Dockerfile
+    env_file: ./env/app-local.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:8080"
+      - "4000:4443"
+    volumes:
+      - "./../src:/app/src"
+      - "./../vendor:/app/vendor"
+      - "./../tests:/app/tests"
+    networks:
+      maxr_bridge:
+        ipv4_address: 172.25.0.10
+  db:
+    hostname: maxr-db.docker
+    image: 'mysql:8.4'
+    container_name: maxr-db
+    shm_size: 2gb
+    environment:
+      MYSQL_ROOT_PASSWORD: f77tD2n9mAZUCV0hnVbu
+    ports:
+      - "3318:3306"
+    volumes:
+      - "./../docker/database/mysql-data:/var/lib/mysql"
+      - "./../docker/database/init-scripts:/docker-entrypoint-initdb.d"
+    networks:
+      maxr_bridge:
+        ipv4_address: 172.25.0.15
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-pf77tD2n9mAZUCV0hnVbu" ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 20s
+  assets:
+    hostname: maxr-assets.docker
+    container_name: maxr-assets
+    build:
+      context: ./../
+      dockerfile: ./docker/Dockerfile.assets
+    depends_on:
+      - app
+    ports:
+      - "3001:8080"
+      - "4001:4443"
+    volumes:
+      - "./../frontend/dist:/usr/share/nginx/html/assets:ro"
+    networks:
+      maxr_bridge:
+        ipv4_address: 172.25.0.20
+  media:
+    hostname: maxr-media.docker
+    container_name: maxr-media
+    build:
+      context: ./../services/media
+      dockerfile: ./docker/Dockerfile
+    env_file: ./env/app-local.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3002:8080"
+    volumes:
+      # Entire Go module root — go.mod, reflex.conf, and all packages in one mount
+      - "./../services/media/src:/app/src"
+      # Persistent media storage
+      - "./../services/media/storage:/app/storage"
+    networks:
+      maxr_bridge:
+        ipv4_address: 172.25.0.25
+
+networks:
+  maxr_bridge:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16
+          gateway: 172.25.0.1

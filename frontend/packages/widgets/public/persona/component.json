@@ -1,0 +1,20 @@
+{
+    "id": "3ca0b3a2-08b0-4df0-9049-78cf163e9d7d",
+    "name": "Persona App",
+    "tag": "persona",
+    "uri": "personas",
+    "version": "1.0.0",
+    "framework": "lit",
+    "entry": "/assets/widgets/public/persona/1.0.0/index.js",
+    "cssPath": null,
+    "integrity": null,
+    "renderMode": "light",
+    "themeAware": true,
+    "exposeParts": [],
+    "exports": {
+        "define": "defineWidget"
+    },
+    "dependencies": [
+    ],
+    "isPublic": false
+}
