@@ -251,15 +251,15 @@ export class DynLitManageImage extends RuntimeWidgetElement {
         .dynlit-mi__lib-badge {
             position: absolute; top: 0; right: 0;
             width: 0; height: 0;
-            border-top: 22px solid #0d6efd;
-            border-left: 22px solid transparent;
+            border-top: 35px solid #0d6efd;
+            border-left: 35px solid transparent;
             cursor: pointer; z-index: 1;
             transition: border-top-color 0.15s;
         }
         .dynlit-mi__lib-badge:hover { border-top-color: #0b5ed7; }
         .dynlit-mi__lib-badge-count {
-            position: absolute; top: 2px; right: 3px;
-            color: #fff; font-size: 0.55rem; font-weight: 700;
+            position: absolute; top: 5px; right: 4px;
+            color: #fff; font-size: 0.75rem; font-weight: 700;
             line-height: 1; pointer-events: none; z-index: 2;
         }
 
@@ -741,34 +741,60 @@ export class DynLitManageImage extends RuntimeWidgetElement {
             const token       = this.runtime?.getAccessToken();
             const authHeaders: HeadersInit = token ? { Authorization: `Bearer ${token}` } : {};
 
-            // ── Step 1: Upload the original (pre-crop) image ──────────────────
-            const originalBlob = await this._dataUrlToBlob(this._src);
-            const ext          = originalBlob.type.split('/')[1] ?? 'bin';
-            const originalForm = new FormData();
-            originalForm.append('file', originalBlob, `original.${ext}`);
-            originalForm.append('entity_name', this.entityName);
-            originalForm.append('image_class', this.imageClass);
-            if (this.entityId)   originalForm.append('entity_id',   this.entityId);
-            if (this.entityUuid) originalForm.append('entity_uuid', this.entityUuid);
-            // NOTE: do NOT send parent_uuid for the original — it is always a root image.
-            // Only the crop upload (step 2) links back to the original via parent_uuid.
-
-            const originalRes = await fetch(`${this._mediaUrl}/api/v1/upload-image`, {
-                method: 'POST', headers: authHeaders, body: originalForm,
-            });
-            if (!originalRes.ok) {
-                const msg = await originalRes.text().catch(() => originalRes.statusText);
-                throw new Error(`Original upload failed (${originalRes.status}): ${msg}`);
-            }
-            const originalJson = await originalRes.json() as { data?: Record<string, unknown> };
-            const originalData = originalJson.data ?? {};
-            const originalUuid = originalData['image_uuid'] as string | undefined;
-
-            // Remember the original so "Edit / Crop" always opens the full-resolution source.
             const toFullOrig = (v: unknown) =>
                 typeof v === 'string' && v.startsWith('/') ? `${this._mediaUrl}${v}` : (v as string) ?? '';
-            this._resolvedOriginalUrl  = toFullOrig(originalData['image']);
-            this._resolvedOriginalUuid = originalUuid ?? '';
+
+            // ── Step 1: Upload original — only for brand-new files ────────────
+            // When the user picks a new file (drag-drop / file-picker / paste),
+            // _src is a data: URL and we must upload it as a new original.
+            //
+            // When the user clicks "Edit / Crop" on an existing image,
+            // _startEditCropAsync sets _src to the resolved original's HTTP URL.
+            // Re-uploading that blob would create a duplicate original every time.
+            // Instead, we reuse _resolvedOriginalUuid which was already resolved
+            // by _fetchImageDetails when the modal opened.
+            const srcIsDataUrl = this._src.startsWith('data:');
+
+            let originalUuid: string | undefined;
+            let originalData: Record<string, unknown> = {};
+
+            if (srcIsDataUrl) {
+                // Fresh file — upload as a new root original.
+                const originalBlob = await this._dataUrlToBlob(this._src);
+                const ext          = originalBlob.type.split('/')[1] ?? 'bin';
+                const originalForm = new FormData();
+                originalForm.append('file', originalBlob, `original.${ext}`);
+                originalForm.append('entity_name', this.entityName);
+                originalForm.append('image_class', this.imageClass);
+                if (this.entityId)   originalForm.append('entity_id',   this.entityId);
+                if (this.entityUuid) originalForm.append('entity_uuid', this.entityUuid);
+                // NOTE: do NOT send parent_uuid for the original — it is always a root image.
+
+                const originalRes = await fetch(`${this._mediaUrl}/api/v1/upload-image`, {
+                    method: 'POST', headers: authHeaders, body: originalForm,
+                });
+                if (!originalRes.ok) {
+                    const msg = await originalRes.text().catch(() => originalRes.statusText);
+                    throw new Error(`Original upload failed (${originalRes.status}): ${msg}`);
+                }
+                const originalJson = await originalRes.json() as { data?: Record<string, unknown> };
+                originalData = originalJson.data ?? {};
+                originalUuid = originalData['image_uuid'] as string | undefined;
+
+                // Remember the original so "Edit / Crop" always opens the full-resolution source.
+                this._resolvedOriginalUrl  = toFullOrig(originalData['image']);
+                this._resolvedOriginalUuid = originalUuid ?? '';
+            } else {
+                // Existing server image — _resolvedOriginalUuid was already set by
+                // _fetchImageDetails on modal open (or by _selectLibraryImage).
+                // Do NOT re-upload; just reuse the existing root original.
+                originalUuid = this._resolvedOriginalUuid || undefined;
+                originalData = {
+                    image:      this._resolvedOriginalUrl || this._src,
+                    image_uuid: originalUuid,
+                    thumb:      '',
+                };
+            }
 
             // ── Step 2: Capture crop-box geometry and check if cropping occurred ──
             // getData(true) returns x,y,width,height in the original image's pixel
@@ -812,8 +838,12 @@ export class DynLitManageImage extends RuntimeWidgetElement {
                 const croppedJson = await croppedRes.json() as { data?: Record<string, unknown> };
                 finalData = croppedJson.data ?? {};
             } else {
-                // No actual crop — the original IS the final image
-                finalData = originalData;
+                // No actual crop — the original IS the final image.
+                // For an existing server image, fall back to _pendingImageData so
+                // the full record (including thumb) is preserved for downstream consumers.
+                finalData = (!srcIsDataUrl && this._pendingImageData)
+                    ? this._pendingImageData
+                    : originalData;
             }
 
             // ── Normalize relative CDN paths to absolute URLs ─────────────────
@@ -1030,7 +1060,12 @@ export class DynLitManageImage extends RuntimeWidgetElement {
         return html`
             <div class="dynlit-mi">
                 <div class="dynlit-mi__header">
-                    <h4>${isUpload ? 'Upload Image' : 'Manage Image'}</h4>
+                    <h4>${isUpload
+                        ? (this._src ? 'Edit / Crop Image' : 'Upload Image')
+                        : isLibrary
+                            ? (this._libraryView === 'crops' ? 'Cropped Versions' : 'Image Library')
+                            : 'Manage Image'
+                    }</h4>
                     <button class="dynlit-mi__close" @click=${() => this.runtime?.closeModal()}>✕</button>
                 </div>
 
