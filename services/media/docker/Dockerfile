@@ -2,7 +2,7 @@ FROM golang:1.23
 
 # install build essentials
 RUN apt-get update
-RUN apt-get install -y wget unzip nginx libnginx-mod-http-lua libnginx-mod-http-ndk build-essential pkg-config --no-install-recommends
+RUN apt-get install -y wget unzip nginx p7zip libnginx-mod-http-lua libnginx-mod-http-ndk build-essential pkg-config --no-install-recommends
 
 RUN apt-get install -y --no-install-recommends ca-certificates git && \
     update-ca-certificates && \
@@ -32,6 +32,7 @@ RUN mkdir -p /app/src
 RUN mkdir -p /app/storage
 RUN mkdir -p /app/logs
 RUN mkdir -p /app/tmp
+RUN mkdir -p /app/ssl
 
 WORKDIR /app/src
 
