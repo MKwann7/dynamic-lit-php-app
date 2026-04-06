@@ -70,3 +70,15 @@ END IF;
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+CREATE TABLE IF NOT EXISTS `domain_ssl` (
+    `domain_ssl_id` int(15) NOT NULL AUTO_INCREMENT COMMENT 'DomainSslId',
+    `whitelabel_id` int(15) DEFAULT NULL COMMENT 'WhitelabelId',
+    `site_id` int(15) DEFAULT NULL COMMENT 'SiteId',
+    `domain` varchar(255) DEFAULT NULL COMMENT 'DomainName',
+    `key_value` text DEFAULT NULL COMMENT 'DomainKey',
+    PRIMARY KEY (`domain_ssl_id`),
+    KEY `domain` (`domain`),
+    KEY `company_id` (`company_id`),
+    KEY `card_domain_id` (`card_domain_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COMMENT='DomainSslTable for DynLit 1.0';
