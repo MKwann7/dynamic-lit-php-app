@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/MKwann7/zgEXCELL-3-Media/app/media/controllers"
+	"github.com/MKwann7/zgEXCELL-3-Media/app/media/scheduler"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"github.com/urfave/negroni"
@@ -18,13 +19,19 @@ func main() {
 		log.Println("No .env file found, using environment variables")
 	}
 
+	// Start the background ACME certificate renewal worker.
+	// The worker runs its first cycle immediately, then every 6 hours.
+	// lego's HTTP-01 challenge server binds :8099 only during active challenges;
+	// NGINX proxies /.well-known/acme-challenge/* → http://127.0.0.1:8099.
+	scheduler.StartRenewalWorker()
+
 	router := router()
 	middleware := negroni.Classic()
 	middleware.UseHandler(router)
 
 	// Start HTTP server
-	log.Println("HTTP server started on (" + os.Getenv("PORT_NUM_MEDIA") + ")")
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT_NUM_MEDIA"), corseHandler(middleware)))
+	log.Println("HTTP server started on (" + os.Getenv("PORT_NUM_OPERATOR") + ")")
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT_NUM_OPERATOR"), corseHandler(middleware)))
 }
 
 func router() *mux.Router {
@@ -34,29 +41,11 @@ func router() *mux.Router {
 		Methods("GET").
 		Path("/health-check").
 		HandlerFunc(controllers.HealthcheckControllerHandle)
-	router.
-		Methods("POST").
-		Path("/api/v1/upload-image").
-		HandlerFunc(controllers.UploadImageControllerHandle)
-	router.
-		Methods("POST").
-		Path("/api/v1/delete-image").
-		HandlerFunc(controllers.DeleteImageControllerHandle)
+
 	router.
 		Methods("GET").
-		Path("/api/v1/images").
-		HandlerFunc(controllers.ListImagesControllerHandle)
-	router.
-		Methods("GET").
-		Path("/api/v1/images/{image_uuid}").
-		HandlerFunc(controllers.GetImageControllerHandle)
-	router.
-		PathPrefix("/cdn/").
-		Handler(http.StripPrefix("/cdn/", http.FileServer(http.Dir("/app/storage/"))))
-	router.
-		Methods("GET").
-		PathPrefix("/").
-		HandlerFunc(controllers.MediaControllerHandle)
+		Path("/api/v1/ssls/get-all-active").
+		HandlerFunc(controllers.GetAllActiveSslsControllerHandle)
 
 	return router
 }

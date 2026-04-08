@@ -71,14 +71,31 @@ END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
-CREATE TABLE IF NOT EXISTS `domain_ssl` (
-    `domain_ssl_id` int(15) NOT NULL AUTO_INCREMENT COMMENT 'DomainSslId',
-    `whitelabel_id` int(15) DEFAULT NULL COMMENT 'WhitelabelId',
-    `site_id` int(15) DEFAULT NULL COMMENT 'SiteId',
-    `domain` varchar(255) DEFAULT NULL COMMENT 'DomainName',
-    `key_value` text DEFAULT NULL COMMENT 'DomainKey',
-    PRIMARY KEY (`domain_ssl_id`),
-    KEY `domain` (`domain`),
-    KEY `company_id` (`company_id`),
-    KEY `card_domain_id` (`card_domain_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COMMENT='DomainSslTable for DynLit 1.0';
+CREATE TABLE IF NOT EXISTS domain_ssl (
+    domain_ssl_id INT NOT NULL AUTO_INCREMENT,
+    whitelabel_id INT DEFAULT NULL,
+    site_id INT DEFAULT NULL,
+    domain VARCHAR(255) NOT NULL,
+    is_lets_encrypt TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'Whether this certificate was issued by Let''s Encrypt',
+    challenge_type ENUM('http-01','dns-01') NOT NULL DEFAULT 'http-01',
+    status ENUM('pending','active','failed','expired') NOT NULL DEFAULT 'pending',
+    cert_pem MEDIUMTEXT DEFAULT NULL,
+    fullchain_pem MEDIUMTEXT DEFAULT NULL,
+    key_pem MEDIUMTEXT DEFAULT NULL,
+    issuer VARCHAR(255) DEFAULT NULL,
+    serial_number VARCHAR(255) DEFAULT NULL,
+    not_before DATETIME DEFAULT NULL,
+    expires DATETIME DEFAULT NULL,
+    last_renewed_at DATETIME DEFAULT NULL,
+    last_checked_at DATETIME DEFAULT NULL,
+    last_error TEXT DEFAULT NULL,
+    created_on DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_on DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (domain_ssl_id),
+    UNIQUE KEY ux_domain (domain),
+    KEY idx_expires (expires),
+    KEY idx_status (status)
+    )
+    ENGINE=InnoDB
+    CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    COMMENT='DomainSslTable for DynLit 1.0';

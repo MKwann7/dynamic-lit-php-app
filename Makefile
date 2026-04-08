@@ -52,6 +52,35 @@ ui-build:
 ui-watch:
 	@./scripts/build-ui-watch.sh
 
+# ── SSL certificate generation ────────────────────────────────────────────────
+# Usage:
+#   make ssl      excell.docker whitelabel=1 [site=2]  →  single-domain cert
+#   make ssl-wild excell.docker whitelabel=1 [site=2]  →  wildcard cert
+#
+# whitelabel  is required.
+# site        is optional — omitted value stores NULL in domain_ssl.
+#
+# Generates key + cert in scripts/local/ssl/tmp/ and appends an INSERT block
+# to docker/database/init-scripts/initialize.98.LoadSsl.sql.
+# Re-running for the same domain replaces the previous block.
+# ─────────────────────────────────────────────────────────────────────────────
+
+.PHONY: ssl
+
+ssl:
+	@./scripts/local-ssl.sh $(word 2,$(MAKECMDGOALS)) regular $(whitelabel) $(site)
+
+.PHONY: ssl-wild
+
+ssl-wild:
+	@./scripts/local-ssl.sh $(word 2,$(MAKECMDGOALS)) wildcard $(whitelabel) $(site)
+
+# Catch-all: silently absorbs the domain-name argument passed after ssl / ssl-wild
+# so make does not error with "No rule to make target 'excell.docker'".
+# Placed last so it never shadows an explicit named target.
+%:
+	@:
+
 .PHONY: ui-deploy
 
 ui-deploy:

@@ -8,7 +8,7 @@
   "entry": "/assets/widgets/account/sites/dashboard/1.0.0/index.js",
   "cssPath": null,
   "integrity": null,
-  "renderMode": "shadow",
+  "renderMode": "light",
   "themeAware": true,
   "exposeParts": [],
   "exports": {

@@ -68,6 +68,7 @@ services:
         condition: service_healthy
     ports:
       - "3002:8080"
+      - "4002:4443"
     volumes:
       # Entire Go module root — go.mod, reflex.conf, and all packages in one mount
       - "./../services/media/src:/app/src"
@@ -76,6 +77,27 @@ services:
     networks:
       dynlit_bridge:
         ipv4_address: 172.25.0.25
+  operator:
+    hostname: operator-media.docker
+    container_name: dynlit-operator
+    build:
+      context: ./../services/operator
+      dockerfile: ./docker/Dockerfile
+    env_file: ./env/app-local.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3003:8080"
+    volumes:
+      # Entire Go module root — go.mod, reflex.conf, and all packages in one mount
+      - "./../services/operator/src:/app/src"
+      # Persist SSL certificates and ACME account key across container restarts.
+      # The account key MUST be preserved to avoid hitting Let's Encrypt rate limits.
+      - "operator_ssl:/app/ssl"
+    networks:
+      dynlit_bridge:
+        ipv4_address: 172.25.0.30
 
 networks:
   dynlit_bridge:
@@ -85,3 +107,8 @@ networks:
       config:
         - subnet: 172.25.0.0/16
           gateway: 172.25.0.1
+
+volumes:
+  # Named volume for the operator's TLS certificates and ACME account key.
+  operator_ssl:
+

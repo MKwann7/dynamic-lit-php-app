@@ -3,7 +3,7 @@ SET FOREIGN_KEY_CHECKS=0;
 USE `dynlit_identity`;
 
 INSERT INTO `whitelabel` (`id`, `name`, `owner_id`, `platform_name`, `public_domain_name`, `public_domain`, `public_domain_ssl`, `portal_domain_name`, `portal_domain`, `portal_domain_ssl`, `root_redirect`, `created_on`, `sys_row_id`) VALUES
-    (1000, 'EZcard, LLC', 1000, 'EZcard','EZcard', 'maxr.docker', 0, 'EZcard Account','admin.maxr.docker',0,NULL,NOW(),UUID_TO_BIN('f9d5800d-e2bf-4c26-a5fe-b7015b6ae796'));
+    (1000, 'Dynamic Lit, LLC', 1000, 'Dynamic Lit','DynLit', 'dynlit.docker', 0, 'EZcard Account','admin.dynlit.docker',0,NULL,NOW(),UUID_TO_BIN('f9d5800d-e2bf-4c26-a5fe-b7015b6ae796'));
 
 USE `dynlit_users`;
 

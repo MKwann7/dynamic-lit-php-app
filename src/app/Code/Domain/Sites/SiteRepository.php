@@ -322,6 +322,7 @@ final class SiteRepository extends BaseRepository
             'status',
             'template_id',
             'owner_id',
+            'has_domain_ssl',
         ];
 
         $uuid = trim($uuid);

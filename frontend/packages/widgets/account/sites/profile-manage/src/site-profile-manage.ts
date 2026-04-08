@@ -163,6 +163,73 @@ export class DynLitSiteProfileManage extends RuntimeWidgetElement {
         .form-control.status-taken  { border-color: #dc3545; }
         .form-control.status-ok:focus   { box-shadow: 0 0 0 3px rgba(25,135,84,0.15); }
         .form-control.status-taken:focus { box-shadow: 0 0 0 3px rgba(220,53,69,0.15); }
+
+        /* ── Toggle switch ───────────────────────────────────────────────── */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-left: 110px; /* align with form-control start */
+        }
+        .toggle-label {
+            font-size: 0.875rem;
+            color: #212529;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toggle-hint {
+            font-size: 0.78rem;
+            color: #6c757d;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: #ced4da;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: 3px;
+            top: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+        .toggle-switch input:checked + .toggle-slider { background: #0d6efd; }
+        .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+        /* ── SSL sub-section ─────────────────────────────────────────────── */
+        .ssl-sub {
+            border-left: 3px solid #0d6efd;
+            margin-left: 110px;
+            padding-left: 14px;
+            margin-bottom: 14px;
+        }
+        .ssl-sub .toggle-row { padding-left: 0; margin-bottom: 10px; }
+        .ssl-pem {
+            font-family: monospace;
+            font-size: 0.78rem;
+            height: 110px;
+            resize: vertical;
+            line-height: 1.4;
+        }
     `;
 
     // ── State ─────────────────────────────────────────────────────────────────
@@ -196,6 +263,14 @@ export class DynLitSiteProfileManage extends RuntimeWidgetElement {
     @state() private errorMsg   = '';
     @state() private successMsg = '';
 
+    // SSL fields
+    @state() private useSsl          = false;
+    @state() private useLetsEncrypt  = true;
+    @state() private sslCertPem      = '';
+    @state() private sslKeyPem       = '';
+    @state() private certError       = '';
+    @state() private keyError        = '';
+
     private ownerDebounce:  ReturnType<typeof setTimeout> | null = null;
     private domainDebounce: ReturnType<typeof setTimeout> | null = null;
     private vanityDebounce: ReturnType<typeof setTimeout> | null = null;
@@ -222,6 +297,21 @@ export class DynLitSiteProfileManage extends RuntimeWidgetElement {
             this.vanityUrl = String(data.vanity_url ?? '');
             this.status    = String(data.status     ?? 'active');
             this.templateId = typeof data.template_id === 'number' ? data.template_id : null;
+            this.useSsl    = Boolean(data.has_domain_ssl ?? false);
+
+            // ── Restore SSL sub-fields from the domain_ssl record ─────────
+            const ssl = data.ssl as Record<string, unknown> | undefined;
+            if (ssl) {
+                this.useLetsEncrypt = Boolean(ssl.is_lets_encrypt ?? true);
+                if (!this.useLetsEncrypt) {
+                    this.sslCertPem = String(ssl.cert_pem ?? '');
+                    this.sslKeyPem  = String(ssl.key_pem  ?? '');
+                }
+            } else {
+                // No domain_ssl row yet — default to Let's Encrypt
+                this.useLetsEncrypt = true;
+            }
+            // ─────────────────────────────────────────────────────────────
 
             // Snapshot the original values — these are already valid for this site
             this.originalDomain    = this.domain;
@@ -323,11 +413,39 @@ export class DynLitSiteProfileManage extends RuntimeWidgetElement {
         this.ownerResults    = [];
     }
 
+    // ── SSL PEM validation ────────────────────────────────────────────────────
+
+    private validatePem(value: string, type: 'cert' | 'key'): string {
+        const trimmed = value.trim();
+        const label         = type === 'cert' ? 'Certificate'  : 'Private key';
+        const beginMarker   = type === 'cert' ? '-----BEGIN CERTIFICATE-----'  : '-----BEGIN PRIVATE KEY-----';
+        const endMarker     = type === 'cert' ? '-----END CERTIFICATE-----'    : '-----END PRIVATE KEY-----';
+
+        if (!trimmed) {
+            return `${label} is required.`;
+        }
+        if (!trimmed.startsWith(beginMarker) || !trimmed.endsWith(endMarker)) {
+            return `Must be valid PEM format starting with ${beginMarker} and ending with ${endMarker}`;
+        }
+        const inner = trimmed.slice(beginMarker.length, trimmed.lastIndexOf(endMarker)).trim();
+        if (!inner) {
+            return `${label} PEM block is empty between the header and footer markers.`;
+        }
+        return '';
+    }
+
     // ── Submit ────────────────────────────────────────────────────────────────
 
     private async onSubmit(): Promise<void> {
         if (!this.siteUuid || this.isSaving) return;
         if (this.domainStatus === 'taken' || this.vanityStatus === 'taken') return;
+
+        // Validate PEM fields before touching the network
+        if (this.useSsl && !this.useLetsEncrypt) {
+            this.certError = this.validatePem(this.sslCertPem, 'cert');
+            this.keyError  = this.validatePem(this.sslKeyPem,  'key');
+            if (this.certError || this.keyError) return;
+        }
 
         this.isSaving   = true;
         this.errorMsg   = '';
@@ -335,13 +453,20 @@ export class DynLitSiteProfileManage extends RuntimeWidgetElement {
 
         try {
             const payload: Record<string, unknown> = {
-                site_name:   this.siteName,
-                domain:      this.domain,
-                vanity_url:  this.vanityUrl,
-                status:      this.status,
-                template_id: this.templateId,
+                site_name:        this.siteName,
+                domain:           this.domain,
+                vanity_url:       this.vanityUrl,
+                status:           this.status,
+                template_id:      this.templateId,
+                use_ssl:          this.useSsl,
+                use_lets_encrypt: this.useLetsEncrypt,
             };
             if (this.selectedOwnerId !== null) payload['owner_id'] = this.selectedOwnerId;
+            // Only ship cert material when the user is providing it manually
+            if (this.useSsl && !this.useLetsEncrypt) {
+                payload['ssl_cert_pem'] = this.sslCertPem;
+                payload['ssl_key_pem']  = this.sslKeyPem;
+            }
 
             const res = await this.runtime!.apiFetch(`/api/v1/sites/${this.siteUuid}`, {
                 method:  'PUT',
@@ -398,11 +523,17 @@ export class DynLitSiteProfileManage extends RuntimeWidgetElement {
     // ── Render ────────────────────────────────────────────────────────────────
 
     private get canSubmit(): boolean {
-        return !this.isSaving
-            && this.domainStatus !== 'taken'
-            && this.vanityStatus !== 'taken'
-            && this.domainStatus !== 'checking'
-            && this.vanityStatus !== 'checking';
+        if (this.isSaving)                          return false;
+        if (this.domainStatus === 'taken')          return false;
+        if (this.vanityStatus === 'taken')          return false;
+        if (this.domainStatus === 'checking')       return false;
+        if (this.vanityStatus === 'checking')       return false;
+        // Manual cert: both fields must be filled and valid before saving
+        if (this.useSsl && !this.useLetsEncrypt) {
+            if (!this.sslCertPem.trim() || !this.sslKeyPem.trim()) return false;
+            if (this.certError || this.keyError)                    return false;
+        }
+        return true;
     }
 
     override render() {
@@ -428,6 +559,8 @@ export class DynLitSiteProfileManage extends RuntimeWidgetElement {
                     'Domain', this.domain, 'e.g. my-domain.com', this.domainStatus,
                     (v) => { this.domain = v; this.scheduleCheck('domain', v); }
                 )}
+
+                ${this.domain ? this.renderSslSection() : ''}
 
                 ${this.renderValidatedField(
                     'Vanity URL', this.vanityUrl, 'e.g. mysite', this.vanityStatus,
@@ -546,5 +679,88 @@ export class DynLitSiteProfileManage extends RuntimeWidgetElement {
                         </div>` : ''}
                 </div>
             </div>`;
+    }
+
+    private renderSslSection(): TemplateResult {
+        return html`
+            <!-- Enable SSL toggle -->
+            <div class="toggle-row">
+                <label class="toggle-label">
+                    <span class="toggle-switch">
+                        <input type="checkbox"
+                               .checked=${this.useSsl}
+                               @change=${(e: Event) => {
+                                   this.useSsl = (e.target as HTMLInputElement).checked;
+                                   // Reset sub-options when SSL is turned off
+                                   if (!this.useSsl) {
+                                       this.useLetsEncrypt = true;
+                                       this.sslCertPem = '';
+                                       this.sslKeyPem  = '';
+                                       this.certError  = '';
+                                       this.keyError   = '';
+                                   }
+                               }} />
+                        <span class="toggle-slider"></span>
+                    </span>
+                    Enable SSL for this domain
+                </label>
+            </div>
+
+            ${this.useSsl ? html`
+                <div class="ssl-sub">
+
+                    <!-- Use Let's Encrypt toggle (pre-checked) -->
+                    <div class="toggle-row">
+                        <label class="toggle-label">
+                            <span class="toggle-switch">
+                                <input type="checkbox"
+                                       .checked=${this.useLetsEncrypt}
+                                       @change=${(e: Event) => {
+                                           this.useLetsEncrypt = (e.target as HTMLInputElement).checked;
+                                           this.sslCertPem = '';
+                                           this.sslKeyPem  = '';
+                                           this.certError  = '';
+                                           this.keyError   = '';
+                                       }} />
+                                <span class="toggle-slider"></span>
+                            </span>
+                            Use Let's Encrypt
+                            <span class="toggle-hint">— auto-issues &amp; renews every 90 days</span>
+                        </label>
+                    </div>
+
+                    <!-- Manual cert fields — shown only when Let's Encrypt is unchecked -->
+                    ${!this.useLetsEncrypt ? html`
+                        ${this.renderField('Certificate', html`
+                            <div class="field-wrap">
+                                <textarea class="form-control ssl-pem ${this.certError ? 'status-taken' : ''}"
+                                          placeholder="-----BEGIN CERTIFICATE-----&#10;(paste your full certificate bundle here)&#10;-----END CERTIFICATE-----"
+                                          .value=${this.sslCertPem}
+                                          @input=${(e: Event) => {
+                                              this.sslCertPem = (e.target as HTMLTextAreaElement).value;
+                                              if (this.certError) this.certError = this.validatePem(this.sslCertPem, 'cert');
+                                          }}
+                                          @blur=${() => { this.certError = this.validatePem(this.sslCertPem, 'cert'); }}
+                                ></textarea>
+                                ${this.certError ? html`<span class="field-status taken">${this.certError}</span>` : ''}
+                            </div>`)}
+
+                        ${this.renderField('Private Key', html`
+                            <div class="field-wrap">
+                                <textarea class="form-control ssl-pem ${this.keyError ? 'status-taken' : ''}"
+                                          placeholder="-----BEGIN PRIVATE KEY-----&#10;(paste your private key here)&#10;-----END PRIVATE KEY-----"
+                                          .value=${this.sslKeyPem}
+                                          @input=${(e: Event) => {
+                                              this.sslKeyPem = (e.target as HTMLTextAreaElement).value;
+                                              if (this.keyError) this.keyError = this.validatePem(this.sslKeyPem, 'key');
+                                          }}
+                                          @blur=${() => { this.keyError = this.validatePem(this.sslKeyPem, 'key'); }}
+                                ></textarea>
+                                ${this.keyError ? html`<span class="field-status taken">${this.keyError}</span>` : ''}
+                            </div>`)}
+                    ` : ''}
+
+                </div>
+            ` : ''}`;
     }
 }

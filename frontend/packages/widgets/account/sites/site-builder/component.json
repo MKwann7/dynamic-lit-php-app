@@ -1,0 +1,19 @@
+{
+  "id": "29fc88ec-e9f5-49ae-b2bc-7f3fcf5a131d",
+  "name": "DynLit Site Builder",
+  "tag": "site-builder",
+  "uri": "/site-builder",
+  "version": "1.0.0",
+  "framework": "lit",
+  "entry": "/assets/widgets/account/sites/site-builder/1.0.0/index.js",
+  "cssPath": "/assets/widgets/account/sites/site-builder/1.0.0/index.css",
+  "integrity": null,
+  "renderMode": "shadow",
+  "themeAware": true,
+  "exposeParts": [],
+  "exports": {
+    "define": "defineWidget"
+  },
+  "dependencies": [],
+  "isPublic": false
+}

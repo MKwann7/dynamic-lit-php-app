@@ -45,9 +45,41 @@ class SitesController extends BaseController
             ], Response::HTTP_NOT_FOUND);
         }
 
+        $data = $site->toDetailApiArray();
+
+        // ── Attach domain_ssl record ──────────────────────────────────────────
+        // Always look up the ssl record for the site's domain so the frontend
+        // can restore useLetsEncrypt and (for manual certs) the PEM fields.
+        $domain = trim((string)($site->domain ?? ''));
+        if ($domain !== '') {
+            $sslRecord = $this->services()->getDomainSslRepository()->findByDomain($domain);
+
+            if ($sslRecord !== null) {
+                $isLetsEncrypt = (bool)($sslRecord['is_lets_encrypt'] ?? true);
+
+                $data['ssl'] = [
+                    'domain_ssl_id'   => $sslRecord['domain_ssl_id'],
+                    'is_lets_encrypt' => $isLetsEncrypt,
+                    'status'          => $sslRecord['status'],
+                    'expires'         => $sslRecord['expires'],
+                    'last_error'      => $sslRecord['last_error'],
+                    'last_renewed_at' => $sslRecord['last_renewed_at'],
+                ];
+
+                // Only expose PEM material for manually-managed certs.
+                // Let's Encrypt certs are re-issued automatically — no need to
+                // round-trip key material through the browser.
+                if (!$isLetsEncrypt) {
+                    $data['ssl']['cert_pem'] = $sslRecord['cert_pem'];
+                    $data['ssl']['key_pem']  = $sslRecord['key_pem'];
+                }
+            }
+        }
+        // ──────────────────────────────────────────────────────────────────────
+
         return new JsonResponse([
             'success' => true,
-            'data'    => $site->toDetailApiArray(),
+            'data'    => $data,
         ], Response::HTTP_OK);
     }
 
@@ -189,6 +221,42 @@ class SitesController extends BaseController
             $fields['owner_id'] = is_int($body->owner_id) ? $body->owner_id : null;
         }
 
+        // ── SSL intent ────────────────────────────────────────────────────
+        // Read the three SSL fields sent by the frontend.
+        // use_ssl drives has_domain_ssl on the site row.
+        // use_lets_encrypt / ssl_cert_pem / ssl_key_pem drive domain_ssl.
+        $useSsl         = property_exists($body, 'use_ssl')         ? (bool)$body->use_ssl         : null;
+        $useLetsEncrypt = property_exists($body, 'use_lets_encrypt') ? (bool)$body->use_lets_encrypt : true;
+        $sslCertPem     = property_exists($body, 'ssl_cert_pem')    ? trim((string)$body->ssl_cert_pem) : '';
+        $sslKeyPem      = property_exists($body, 'ssl_key_pem')     ? trim((string)$body->ssl_key_pem)  : '';
+
+        // ── Server-side PEM validation (mirrors the frontend validatePem) ──
+        if ($useSsl === true && !$useLetsEncrypt) {
+            $certError = $this->validatePemBlock($sslCertPem, 'cert');
+            if ($certError !== null) {
+                return new JsonResponse([
+                    'success' => false,
+                    'message' => $certError,
+                    'field'   => 'ssl_cert_pem',
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
+            $keyError = $this->validatePemBlock($sslKeyPem, 'key');
+            if ($keyError !== null) {
+                return new JsonResponse([
+                    'success' => false,
+                    'message' => $keyError,
+                    'field'   => 'ssl_key_pem',
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+        }
+        // ──────────────────────────────────────────────────────────────────
+
+        if ($useSsl !== null) {
+            $fields['has_domain_ssl'] = $useSsl ? 1 : 0;
+        }
+        // ──────────────────────────────────────────────────────────────────
+
         // ── Uniqueness validation (scoped to whitelabel) ──────────────────
         $repo       = $this->services()->getSiteRepository();
         $whitelabel = (int)$site->whitelabel_id;
@@ -231,6 +299,40 @@ class SitesController extends BaseController
                 'message' => 'Failed to update site.',
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+
+        // ── SSL pipeline ──────────────────────────────────────────────────
+        // Only act when the frontend explicitly sent use_ssl.
+        if ($useSsl !== null) {
+            $domainForSsl   = $fields['domain'] ?? $site->domain ?? '';
+            $siteIdForSsl   = (int)$updated->site_id;
+            $whitelabelId   = (int)$updated->whitelabel_id;
+            $sslRepo        = $this->services()->getDomainSslRepository();
+
+            if (!$useSsl) {
+                // SSL disabled — nothing to upsert; has_domain_ssl=0 already written above.
+                // The domain_ssl row is intentionally left in place (may still hold a valid
+                // cert from a previous session) — the ACME worker will naturally let it expire.
+
+            } elseif ($useLetsEncrypt) {
+                // Let's Encrypt — queue domain for automatic issuance by the ACME worker.
+                if ($domainForSsl !== '') {
+                    $sslRepo->upsertPending($domainForSsl, $siteIdForSsl, $whitelabelId);
+                }
+
+            } else {
+                // Manual cert — store the provided PEM material immediately as active.
+                if ($domainForSsl !== '' && $sslCertPem !== '' && $sslKeyPem !== '') {
+                    $sslRepo->upsertManualCert(
+                        $domainForSsl,
+                        $siteIdForSsl,
+                        $whitelabelId,
+                        $sslCertPem,
+                        $sslKeyPem
+                    );
+                }
+            }
+        }
+        // ──────────────────────────────────────────────────────────────────
 
         return new JsonResponse([
             'success' => true,
@@ -372,6 +474,36 @@ class SitesController extends BaseController
                 $sites
             ),
         ], Response::HTTP_OK);
+    }
+
+    /**
+     * Validate a PEM block (certificate or private key).
+     *
+     * @param string $pem The PEM block to validate
+     * @param string $type Either 'cert' or 'key'
+     * @return string|null Error message if invalid, null if valid
+     */
+    private function validatePemBlock(string $pem, string $type): ?string
+    {
+        if ($pem === '') {
+            return ucfirst($type === 'cert' ? 'Certificate' : 'Private key') . ' PEM is required.';
+        }
+
+        if ($type === 'cert') {
+            // Validate certificate format: -----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----
+            $pattern = '/^-----BEGIN CERTIFICATE-----[\s\S]+-----END CERTIFICATE-----$/';
+            if (!preg_match($pattern, $pem)) {
+                return 'Invalid certificate PEM format. Must start with -----BEGIN CERTIFICATE----- and end with -----END CERTIFICATE-----.';
+            }
+        } elseif ($type === 'key') {
+            // Validate private key format: -----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----
+            $pattern = '/^-----BEGIN PRIVATE KEY-----[\s\S]+-----END PRIVATE KEY-----$/';
+            if (!preg_match($pattern, $pem)) {
+                return 'Invalid private key PEM format. Must start with -----BEGIN PRIVATE KEY----- and end with -----END PRIVATE KEY-----.';
+            }
+        }
+
+        return null;
     }
 }
 

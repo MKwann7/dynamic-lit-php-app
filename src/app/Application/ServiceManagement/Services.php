@@ -10,6 +10,7 @@ use Application\Routing\RouteControllerRegistrar;
 use Code\Database\DatabaseClient;
 use Code\Database\DatabaseConnection;
 use Code\Domain\Sites\SiteRepository;
+use Code\Domain\Ssl\DomainSslRepository;
 use Code\Domain\Users\UserAdminPermissionRepository;
 use Code\Domain\Users\UserRepository;
 use Code\Security\JwtPayloadFactory;
@@ -45,6 +46,7 @@ class Services
     private ?HtmlPageRenderer $htmlPageRenderer = null;
     private ?AggregateComponentService $componentService = null;
     private ?SiteRepository $siteRepository = null;
+    private ?DomainSslRepository $domainSslRepository = null;
     private ?WhitelabelRepository $whitelabelRepository = null;
     private ?IdentityRegistrationManager $identityRegistrationManager = null;
     private ?IdentitySchemeService $identitySchemeService = null;
@@ -223,6 +225,15 @@ class Services
         }
 
         return $this->siteRepository;
+    }
+
+    public function getDomainSslRepository(): DomainSslRepository
+    {
+        if ($this->domainSslRepository === null) {
+            $this->domainSslRepository = new DomainSslRepository();
+        }
+
+        return $this->domainSslRepository;
     }
 
     public function getWhitelabelRepository(): WhitelabelRepository

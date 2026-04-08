@@ -125,22 +125,23 @@ class SiteRow
     public function toDetailApiArray(): array
     {
         return [
-            'uuid'        => $this->sys_row_id,
-            'site_num'    => $this->site_num,
-            'site_name'   => $this->site_name,
-            'domain'      => $this->domain,
-            'vanity_url'  => $this->vanity_url,
-            'template_id' => $this->template_id,
-            'template'    => null,   // populated via JOIN when available
-            'status'      => $this->status,
-            'is_template' => $this->is_template,
-            'owner_id'    => $this->owner_id,
-            'owner_name'  => null,   // populated via JOIN when available
-            'banner_url'  => null,   // populated via theme JOIN when available
-            'logo_url'    => null,
-            'favicon_url' => null,
-            'created_at'  => $this->created_on,
-            'updated_at'  => $this->last_updated,
+            'uuid'           => $this->sys_row_id,
+            'site_num'       => $this->site_num,
+            'site_name'      => $this->site_name,
+            'domain'         => $this->domain,
+            'has_domain_ssl' => $this->has_domain_ssl,
+            'vanity_url'     => $this->vanity_url,
+            'template_id'    => $this->template_id,
+            'template'       => null,
+            'status'         => $this->status,
+            'is_template'    => $this->is_template,
+            'owner_id'       => $this->owner_id,
+            'owner_name'     => null,
+            'banner_url'     => null,
+            'logo_url'       => null,
+            'favicon_url'    => null,
+            'created_at'     => $this->created_on,
+            'updated_at'     => $this->last_updated,
         ];
     }
 

@@ -28,11 +28,25 @@ RUN cd && \
 	ldconfig /usr/local/lib
 
 # Setup document root
+RUN apt-get install -y openssl --no-install-recommends
+
+# ...existing code...
+
 RUN mkdir -p /app/src
 RUN mkdir -p /app/storage
+RUN mkdir -p /app/storage/ssl
 RUN mkdir -p /app/logs
 RUN mkdir -p /app/tmp
 RUN mkdir -p /app/ssl
+
+# Generate self-signed fallback certificates so nginx can always start.
+# The deploy script overwrites these with real certs at container startup.
+RUN openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+        -keyout /app/ssl/excell.docker.key \
+        -out  /app/ssl/excell.docker.crt \
+        -subj "/CN=excell.docker/O=DynLit/C=US" && \
+    cp /app/ssl/excell.docker.crt /app/ssl/maxr.docker.crt && \
+    cp /app/ssl/excell.docker.key /app/ssl/maxr.docker.key
 
 WORKDIR /app/src
 

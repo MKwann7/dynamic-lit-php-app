@@ -7,6 +7,9 @@ const PROFILE_MANAGE_ID = 'cbd0cab1-1906-49b5-bbe3-ffdcb7e616d2';
 const USER_MANAGE_ID    = 'e6cde524-13f5-4db2-86cf-d0304c07f420';
 const THEME_SETTINGS_ID = '44f8672a-7897-4c74-a120-e2d6908ef5ea';
 
+// ── Site-builder widget loaded inline into the Editor tab ─────────────────────
+const SITE_BUILDER_ID = '29fc88ec-e9f5-49ae-b2bc-7f3fcf5a131d';
+
 type DashTab = 'profile' | 'editor' | 'contacts' | 'billing';
 
 interface SiteData {
@@ -245,6 +248,23 @@ export class DynLitSiteDashboard extends RuntimeWidgetElement {
         .theme-ph.banner { width: 220px; height: 148px; }
         .theme-ph.logo, .theme-ph.favicon { width: 80px; height: 80px; }
 
+        /* ── Editor tab panel ────────────────────────────────────────────── */
+        /*
+         * The editor panel is always present in the DOM (once loading clears)
+         * so the site-builder widget is never destroyed when the user switches
+         * to another tab. Visibility is toggled purely via display:none.
+         */
+        .editor-panel {
+            width: 100%;
+            min-height: 600px;
+            box-sizing: border-box;
+        }
+        .editor-panel dyn-mount {
+            display: block;
+            width: 100%;
+            min-height: 600px;
+        }
+
         /* ── Contacts card ───────────────────────────────────────────────── */
         .contacts-hd {
             display: flex;
@@ -326,6 +346,28 @@ export class DynLitSiteDashboard extends RuntimeWidgetElement {
     private _loadAttempted = false;
 
     /**
+     * Unique mount ID generated fresh for each component instance.
+     *
+     * WHY NOT a module-level constant:
+     * The DynComponentManager never removes a mount record from its registry
+     * when the parent component is destroyed (back navigation). On the next
+     * visit a new <dyn-mount> is in the DOM, but loadComponentById finds the
+     * stale registry entry pointing to the detached element and mounts into it
+     * — resulting in nothing visible. A per-instance UUID is never in the
+     * registry on a fresh visit, so loadComponentById falls through to
+     * document.querySelector, finds the real <dyn-mount>, and registers it
+     * correctly.
+     */
+    private readonly _editorMountId: string = crypto.randomUUID();
+
+    /**
+     * True once the site-builder has been loaded into the local editor mount.
+     * Prevents re-calling loadComponentOnMount on subsequent tab switches or
+     * Lit re-renders. Reset to false only when the component is disconnected.
+     */
+    private _editorMounted = false;
+
+    /**
      * Arrow-function property so the same reference is used for both
      * addEventListener and removeEventListener on window.
      */
@@ -374,6 +416,7 @@ export class DynLitSiteDashboard extends RuntimeWidgetElement {
     override disconnectedCallback(): void {
         super.disconnectedCallback();
         window.removeEventListener('dynlit:site:updated', this._onSiteUpdated);
+        this._editorMounted = false;
     }
 
     /**
@@ -494,6 +537,35 @@ export class DynLitSiteDashboard extends RuntimeWidgetElement {
         });
     }
 
+    /**
+     * Load the site-builder into the local editor mount the first time the
+     * Editor tab is selected.
+     *
+     * Uses behavior:'silent' so the runtime never pushes history or updates
+     * the URL — the builder is fully inline inside this dashboard's DOM.
+     * The <dyn-mount> is always present (see renderEditorTab / render) so
+     * the element is guaranteed to exist in the DOM when this runs.
+     */
+    private _activateEditorBuilder(): void {
+        if (this._editorMounted) return;
+        if (!this.siteUuid || !this.runtime) return; // not ready yet; tab click will retry on next render
+
+        this._editorMounted = true;
+        console.log("loading Site Builder");
+        void this.runtime.loadComponentOnMount(
+            SITE_BUILDER_ID,
+            this._editorMountId,
+            {
+                routingContext: {
+                    behavior:      'silent',
+                    anchorSegment: this.siteUuid,
+                    anchorDepth:   3,
+                    routeParams:   { uuid: this.siteUuid },
+                },
+            },
+        );
+    }
+
     private onBackClick(): void {
         this.navigateBack();
     }
@@ -528,15 +600,38 @@ export class DynLitSiteDashboard extends RuntimeWidgetElement {
 
             ${this.isLoading
                 ? html`<div class="loading-state">Loading…</div>`
-                : this.activeTab === 'profile'
-                    ? this.renderProfileTab()
-                    : this.renderComingSoon(this.activeTab)}`;
+                : html`
+                    ${this.activeTab === 'profile'
+                        ? this.renderProfileTab()
+                        : this.activeTab !== 'editor'
+                            ? this.renderComingSoon(this.activeTab)
+                            : ''}
+                    ${this.renderEditorTab()}
+                `}`;
+    }
+
+    /**
+     * The editor panel is always rendered once loading finishes so the
+     * site-builder widget (loaded into EDITOR_LOCAL_MOUNT_ID on first Editor
+     * tab click) is never destroyed when the user switches to another tab.
+     *
+     * Visibility is toggled purely with display:none — no DOM removal.
+     */
+    private renderEditorTab(): TemplateResult {
+        return html`
+            <div class="editor-panel"
+                 style="${this.activeTab === 'editor' ? '' : 'display:none'}">
+                <dyn-mount id="${this._editorMountId}"></dyn-mount>
+            </div>`;
     }
 
     private renderTabBtn(tab: DashTab, icon: TemplateResult, label: string): TemplateResult {
         return html`
             <button class="tab-btn ${this.activeTab === tab ? 'active' : ''}"
-                    @click=${() => { this.activeTab = tab; }}>
+                    @click=${() => {
+                        this.activeTab = tab;
+                        if (tab === 'editor') this._activateEditorBuilder();
+                    }}>
                 ${icon} ${label}
             </button>`;
     }
